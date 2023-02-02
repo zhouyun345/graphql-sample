@@ -1,0 +1,13 @@
+type Query {
+    greeting: String
+    artifactRepositories : [ArtifactRepository]
+    artifactRepository(id : ID!) : ArtifactRepository
+    tests(ids : [ID]!) : [ArtifactRepository]
+}
+
+type ArtifactRepository {
+    id: ID!
+    name: String!
+    url: String!
+    snapshotsEnabled: Boolean
+}

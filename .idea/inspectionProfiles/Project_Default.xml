@@ -1,0 +1,22 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="AndroidLintAnnotateVersionCheck" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintCoarseFineLocation" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintCustomSplashScreen" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintCustomX509TrustManager" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintFontValidation" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintHighSamplingRate" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintIntentFilterExportedReceiver" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintLaunchActivityFromNotification" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintLeanbackUsesWifi" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintMediaCapabilities" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintNotificationTrampoline" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintNotifyDataSetChanged" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintTileProviderPermissions" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintUnspecifiedImmutableFlag" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintWatchFaceEditor" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="DockerFileRunCommandMissingContinuation" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="ELValidationInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+  </profile>
+</component>

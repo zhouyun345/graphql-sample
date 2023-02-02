@@ -1,0 +1,8 @@
+{
+    artifactRepository(id: "spring-releases"){
+        id,
+        name,
+        url,
+        snapshotsEnabled
+    }
+}
