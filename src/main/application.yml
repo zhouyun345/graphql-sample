@@ -1,0 +1,13 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,info
+
+
+server:
+  port: 8080
+
+graphql:
+  endpoint:
+    url: http://localost:8080

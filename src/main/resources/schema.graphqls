@@ -1,0 +1,1921 @@
+"""Exposes a URL that specifies the behaviour of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behaviour of this scalar."""
+  url: String!
+) on SCALAR
+
+type Acceleration {
+  from0To100Kmh: AccelerationTechnicalDataItem
+  from0To100KmhLaunchControl: AccelerationTechnicalDataItem
+  from0To100KmhSportChrono: AccelerationTechnicalDataItem
+  from0To160Kmh: AccelerationTechnicalDataItem
+  from0To160KmhLaunchControl: AccelerationTechnicalDataItem
+  from0To160KmhSportChrono: AccelerationTechnicalDataItem
+  from0To200Kmh: AccelerationTechnicalDataItem
+  from0To200KmhLaunchControl: AccelerationTechnicalDataItem
+  from0To200KmhSportChrono: AccelerationTechnicalDataItem
+  from0To300Kmh: AccelerationTechnicalDataItem
+  from0To60Mph: AccelerationTechnicalDataItem
+  from0To60MphLaunchControl: AccelerationTechnicalDataItem
+  from0To60MphSportChrono: AccelerationTechnicalDataItem
+  from80To120KmhElasticity5thGear: AccelerationTechnicalDataItem
+  from80To120KmhInGear: AccelerationTechnicalDataItem
+  from80To120KmhInGearSportChrono: AccelerationTechnicalDataItem
+  quarterMile: AccelerationTechnicalDataItem
+  quarterMileSportChrono: AccelerationTechnicalDataItem
+}
+
+type AccelerationMeasurement implements Measurement & FormattedMarketingValue {
+  sec: FloatUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type AccelerationTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: AccelerationMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+type AngleMeasurement implements Measurement & FormattedMarketingValue {
+  degree: FloatUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type AngleTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: AngleMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+type ApproachDepartureAngle {
+  airSuspensionHighLevel: ApproachDepartureAngleAxisValues!
+  steelSuspension: ApproachDepartureAngleAxisValues!
+}
+
+type ApproachDepartureAngleAxisValues {
+  front: AngleTechnicalDataItem
+  rear: AngleTechnicalDataItem
+}
+
+type BatteryCapacity {
+  gross: ElectricCapacityTechnicalDataItem
+  net: ElectricCapacityTechnicalDataItem
+}
+
+type Body {
+  approachDepartureAngle: ApproachDepartureAngle!
+  dragCoefficient: DragTechnicalDataItem
+  fuelTankCapacity: FuelTankCapacityTechnicalDataItem
+  height: VehicleLengthTechnicalDataItem
+  length: VehicleLengthTechnicalDataItem
+  load: Load!
+  luggage: Luggage!
+  maxGroundClearance: MaxGroundClearance!
+  maxWadingDepth: MaxWadingDepth!
+  permissibleGrossWeight: VehicleWeightTechnicalDataItem
+  rampBreakOverAngle: RampBreakOverAngle!
+  track: Track!
+  trailerCoupling: TrailerCoupling!
+  turningRadius: TurningRadiusTechnicalDataItem
+  unladenWeight: UnladenWeight!
+  wheelBase: VehicleLengthTechnicalDataItem
+  width: Width!
+}
+
+type BodyDetailLengthMeasurement implements Measurement & FormattedMarketingValue {
+  inh: FloatUnitMeasurementValue!
+  mmtt: IntUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type BodyDetailLengthTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: BodyDetailLengthMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+type Charging {
+  batteryCapacity: BatteryCapacity!
+  chargingTime: ChargingTime!
+  maxChargingPowerDc: ChargingPowerTechnicalDataItem
+}
+
+type ChargingPowerMeasurement implements Measurement & FormattedMarketingValue {
+  kwt: FloatUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type ChargingPowerTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: ChargingPowerMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+type ChargingTime {
+  ac11KwTo100Percent: ChargingTimeAcTechnicalDataItem
+  ac9Point6KwTo100Percent: ChargingTimeAcTechnicalDataItem
+  dc270Kw5to80Percent: ChargingTimeDcTechnicalDataItem
+  dc270KwUpTo100Km: ChargingTimeDcTechnicalDataItem
+  dc50Kw5to80Percent: ChargingTimeDcTechnicalDataItem
+  dc50KwUpTo100Km: ChargingTimeDcTechnicalDataItem
+}
+
+type ChargingTimeAcMeasurement implements Measurement & FormattedMarketingValue {
+  hour: FloatUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type ChargingTimeAcTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: ChargingTimeAcMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+type ChargingTimeDcMeasurement implements Measurement & FormattedMarketingValue {
+  min: FloatUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type ChargingTimeDcTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: ChargingTimeDcMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+type ColorTag {
+  """color hex code e.g. #000000"""
+  hexCode: String!
+  key: String!
+  name: TranslatedText!
+}
+
+type CombustionPower {
+  power: PowerItem
+}
+
+type ConfiguratorImageMetadata {
+  """whether image shows vehicle from outside or not"""
+  isExternalView: Boolean!
+  variants: [ConfiguratorImageVariant!]!
+
+  """identifier of image perspective (e.g. extcam01)"""
+  view: String!
+  largestVariant(preferTransparent: Boolean): ConfiguratorImageVariant!
+}
+
+type ConfiguratorImagesMetadata {
+  primaryExternalView: ConfiguratorImageMetadata
+  views: [ConfiguratorImageMetadata!]!
+}
+
+type ConfiguratorImageVariant {
+  """image height in pixels"""
+  height: Int!
+
+  """whether image has transparent background (png) or not (jpg)"""
+  isTransparent: Boolean!
+
+  """url to configurator image in picserv service"""
+  url: String!
+
+  """image width in pixels"""
+  width: Int!
+}
+
+type ConsumptionEmission {
+  ece: GeneralConsumptionEmission!
+  general: GeneralConsumptionEmission!
+  marketing: MarketingConsumptionEmission
+  wltp: WltpConsumptionEmission!
+}
+
+enum CritAir {
+  GREEN
+  VIOLET_1
+  YELLOW_2
+  ORANGE_3
+  RED_4
+  GREY_5
+  UNCLASSIFIED
+}
+
+type CSVSalesArea {
+  importerAlias: String
+  countryVehicleSpecification: String
+  ggId: Int
+  importerNumber: Int
+}
+
+input CustomColorFilterInput {
+  colorCode: String!
+}
+
+input CustomEquipmentModificationInput {
+  equipmentCategory: EquipmentCategory!
+  equipmentTagKeys: [String!]!
+  name: TranslatedTextInput!
+}
+
+type CustomerSpecifiedVehicle {
+  configuratorImages: CustomerSpecifiedVehicleConfiguratorImages!
+  energyEfficiency: EnergyEfficiency!
+  equipmentInformation: FactoryVehicleEquipmentInformation!
+  exteriorColor: FactoryVehicleExteriorColor
+  interior: FactoryVehicleInterior
+  metaData: CustomerSpecifiedVehicleMetaData!
+  modelInformation: ModelInformation!
+  modelYear: Int!
+  modelYearCode: String!
+  orderTypeBasicInformation: OrderTypeBasicInformation!
+  orderTypeCode: String!
+  porscheCodeServicePrice: PorscheCodeServicePrice
+  roofColor: FactoryVehicleRoofColor
+  salesArea: CSVSalesArea!
+  standardEquipment: StandardEquipment!
+  technicalData: TechnicalData!
+  transmission: TranslatedTransmission
+  vehicleBasicData: VehicleBasicData!
+}
+
+type CustomerSpecifiedVehicleConfiguratorImages {
+  """
+  Provides IRIS configurator image urls, only for the last few model years. Can
+  only be accessed with image viewer access rights.
+  """
+  iris(irisConfiguratorImagesRequest: IrisConfiguratorImagesRequestInput!): [IrisConfiguratorImage!]
+}
+
+type CustomerSpecifiedVehicleMetaData {
+  valid: Boolean!
+}
+
+"""An RFC-3339 compliant Full Date Scalar"""
+scalar Date
+
+"""A slightly refined version of RFC-3339 compliant DateTime Scalar"""
+scalar DateTime
+
+type Derivative {
+  """describes the body type of this derivative e.g. coupe, limousine"""
+  bodyType: TranslatedEnumValue!
+  derivativeCategory: DerivativeCategory!
+  key: String!
+  name: TranslatedText!
+}
+
+type DerivativeCategory {
+  key: String!
+  name: TranslatedText!
+}
+
+type DisplacementMeasurement implements Measurement & FormattedMarketingValue {
+  cmq: IntUnitMeasurementValue!
+  inq: FloatUnitMeasurementValue!
+  ltr: FloatUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type DisplacementTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: DisplacementMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+type DragMeasurement implements Measurement & FormattedMarketingValue {
+  cwval: FloatUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type DragTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: DragMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+enum DriveTrain {
+  ALL_WHEEL_DRIVE
+  REAR_WHEEL_DRIVE
+}
+
+type ElectricCapacityMeasurement implements Measurement & FormattedMarketingValue {
+  kwh: FloatUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type ElectricCapacityTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: ElectricCapacityMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+type ElectricConsumptionEquivalentMeasurement implements Measurement & FormattedMarketingValue {
+  mpge: FloatUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type ElectricConsumptionEquivalentTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: ElectricConsumptionEquivalentMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+type ElectricConsumptionMeasurement implements Measurement & FormattedMarketingValue {
+  vele: FloatUnitMeasurementValue!
+  whrkmt: FloatUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type ElectricConsumptionTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: ElectricConsumptionMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+type ElectricPower {
+  overboostLaunchControlUpTo: PowerItem
+  upTo: PowerItem
+}
+
+type EmissionMeasurement implements Measurement & FormattedMarketingValue {
+  grkm: IntUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type EmissionTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: EmissionMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+type EnergyEfficiency {
+  france: FrenchEnergyEfficiency!
+  germany: GermanEnergyEfficiency!
+  switzerland: SwissEnergyEfficiency!
+}
+
+type Engine {
+  displacement: DisplacementTechnicalDataItem
+  engineBore: EngineDetailLengthTechnicalDataItem
+  engineDesign: TranslatedEnumValueTechnicalDataItem
+  engineLayout: TranslatedEnumValueTechnicalDataItem
+  engineStroke: EngineDetailLengthTechnicalDataItem
+  fuelType: TranslatedEnumValueTechnicalDataItem
+  maxPowerAtRpm: MaxPowerAtRpm!
+  maxPowerPerLiter: MaxPowerPerLiter
+  maxRpm: RpmTechnicalDataItem
+  maxTorque: MaxTorque!
+  maxTorqueAtRpm: MaxTorqueAtRpm!
+  numberOfCylinders: IntTechnicalDataItem
+  power: Power!
+}
+
+type EngineDetailLengthMeasurement implements Measurement & FormattedMarketingValue {
+  inh: FloatUnitMeasurementValue!
+  mmtt: FloatUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type EngineDetailLengthTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: EngineDetailLengthMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+type EngineMutations {
+  selected(inventoryId: String!, engine: SelectedOptionCodeModificationInput!): VehicleStateMutationResult!
+}
+
+enum EngineType {
+  PETROL
+  DIESEL
+  HYBRID
+  ELECTRIC
+}
+
+type EprelTyre {
+  id: String!
+
+  """
+  tyre fiche pdf url for each language as provided by European Product Registry for Energy Labelling
+  """
+  tyreFicheUrl: TranslatedText!
+
+  """
+  tyre label url in given format as provided by European Product Registry for Energy Labelling
+  """
+  tyreLabelUrl(format: TyreLabelFormat!): String!
+}
+
+interface Equipment {
+  categoryKey: String!
+  description: TranslatedText!
+  imageKeys: [String!]!
+  name: TranslatedText!
+  optionCode: String
+  optionType: String
+
+  """prices can only be accessed with price viewer access rights"""
+  price: Price
+  selectedByCustomer: Boolean!
+  sortIndex: Int
+  tags: [EquipmentTag!]!
+  visibleForCustomers: Boolean!
+  category: EquipmentCategoryDetails!
+}
+
+enum EquipmentCategory {
+  PACKAGES
+  EXTERIOR_COLOR
+  FOILS
+  INTERIOR_COLOR
+  EXTERIOR
+  TRANSMISSION_CHASSIS
+  WHEELS
+  INTERIOR
+  INTERIOR_BLACK
+  INTERIOR_LEATHER
+  INTERIOR_ALCANTARA
+  INTERIOR_RACE_TEX
+  INTERIOR_WOOD
+  INTERIOR_CARBON
+  INTERIOR_ALUMINIUM
+  AUDIO_COMMUNICATION
+  E_MOBILITY
+  FACTORY_COLLECTION
+  PCCD_OTHERS
+  STEERING_CODES
+  TEST_VEHICLES
+  Z_OPTIONS_INTERNAL
+  COLOUR_LEATHER_STITCHINGS
+  LIGHTS_VISION
+  COMFORT_ASSISTANCE
+  PORSCHE_APPROVED
+  OTHERS
+}
+
+interface EquipmentCategoryDetails {
+  key: String!
+  name: TranslatedText!
+  sortIndex: Int!
+  equipment(filter: VehicleStateEquipmentOptionsFilterInput): [Equipment!]!
+}
+
+input EquipmentChangeInput {
+  addCustomEquipment: [CustomEquipmentModificationInput!]
+  removeCatalogEquipmentByOptionCodes: [String!]
+  removeCustomEquipmentByNames: [String!]
+  setManualWheels: ManualWheelsModificationInput
+  setSelectedWheels: SelectedOptionCodeModificationInput
+}
+
+interface EquipmentInformation {
+  options: EquipmentOptions!
+  packages: [EquipmentPackage!]!
+  categories: [EquipmentCategoryDetails!]!
+}
+
+type EquipmentMutations {
+  addCustomEquipment(inventoryId: String!, customEquipment: CustomEquipmentModificationInput!): VehicleStateMutationResult!
+  changeEquipment(inventoryId: String!, change: EquipmentChangeInput!): VehicleStateMutationResult!
+  removeCatalogEquipment(inventoryId: String!, optionCode: String!): VehicleStateMutationResult!
+  removeCustomEquipment(inventoryId: String!, name: String!): VehicleStateMutationResult!
+  reset(inventoryId: String!, resetWheels: Boolean): VehicleStateMutationResult!
+}
+
+interface EquipmentOptions {
+  wheels: Wheels
+}
+
+interface EquipmentPackage {
+  contents: [EquipmentPackageContent!]!
+  optionCode: String!
+  equipment(filter: VehicleStateEquipmentOptionsFilterInput): [Equipment!]!
+}
+
+type EquipmentPackageContent {
+  isSubPackage: Boolean!
+  isUpgraded: Boolean!
+  optionCode: String!
+}
+
+type EquipmentTag {
+  category: TranslatedEnumValue!
+  key: String!
+  name: TranslatedText!
+  sortIndex: Int!
+}
+
+interface ExteriorColor {
+  """tag to provide a common way to filter colors"""
+  colorTag: ColorTag
+  customColorCode: String
+
+  """type of this exterior color (uni or metallic)"""
+  exteriorColorType: TranslatedEnumValue
+
+  """color hex code e.g. #000000"""
+  hexCode: String
+  isCustomColor: Boolean
+  name: TranslatedText!
+  optionCode: String
+  optionType: String
+
+  """prices can only be accessed with price viewer access rights"""
+  price: Price
+}
+
+type ExteriorColorMutations {
+  manual(inventoryId: String!, exteriorColor: ManualExteriorColorModificationInput!): VehicleStateMutationResult!
+  selected(inventoryId: String!, exteriorColor: SelectedOptionCodeModificationInput!): VehicleStateMutationResult!
+}
+
+enum ExteriorColorType {
+  UNI
+  METALLIC
+}
+
+type Factory {
+  codeCarport: String!
+  codePIA: String!
+  key: String!
+  location: String!
+}
+
+type FactoryVehicle {
+  configuratorImages: FactoryVehicleConfiguratorImages!
+  energyEfficiency: EnergyEfficiency!
+  equipmentInformation: FactoryVehicleEquipmentInformation!
+  exteriorColor: FactoryVehicleExteriorColor
+  interior: FactoryVehicleInterior
+  metaData: FactoryVehicleMetaData!
+  modelInformation: ModelInformation!
+  modelYear: Int!
+  orderTypeBasicInformation: OrderTypeBasicInformation!
+  orderTypeCode: String!
+  rating: Rating!
+  roofColor: FactoryVehicleRoofColor
+  salesArea: SalesArea!
+  standardEquipment: StandardEquipment!
+  technicalData: TechnicalData!
+  transmission: TranslatedTransmission
+  vehicleBasicData: VehicleBasicData!
+  vin: String!
+}
+
+type FactoryVehicleConfiguratorImages {
+  """
+  Provides picserv configurator image urls and metadata, only for vehicles with
+  model year >= 2016. Can only be accessed with image viewer access rights.
+  """
+  picserv: ConfiguratorImagesMetadata
+
+  """
+  Provides IRIS configurator image urls, only for the last few model years. Can
+  only be accessed with image viewer access rights.
+  """
+  iris(irisConfiguratorImagesRequest: IrisConfiguratorImagesRequestInput!): [IrisConfiguratorImage!]
+}
+
+type FactoryVehicleEquipment implements Equipment {
+  optionCode: String!
+  categoryKey: String!
+  description: TranslatedText!
+  imageKeys: [String!]!
+  name: TranslatedText!
+  optionType: String
+
+  """prices can only be accessed with price viewer access rights"""
+  price: Price
+  selectedByCustomer: Boolean!
+  sortIndex: Int
+  tags: [EquipmentTag!]!
+  visibleForCustomers: Boolean!
+  category: FactoryVehicleEquipmentCategoryDetails!
+}
+
+type FactoryVehicleEquipmentCategoryDetails implements EquipmentCategoryDetails {
+  key: String!
+  name: TranslatedText!
+  sortIndex: Int!
+  equipment(filter: VehicleStateEquipmentOptionsFilterInput): [FactoryVehicleEquipment!]!
+}
+
+type FactoryVehicleEquipmentInformation implements EquipmentInformation {
+  options: FactoryVehicleEquipmentOptions!
+  packages: [FactoryVehicleEquipmentPackage!]!
+  categories: [FactoryVehicleEquipmentCategoryDetails!]!
+}
+
+type FactoryVehicleEquipmentOptions implements EquipmentOptions {
+  wheels: FactoryVehicleWheels
+  list(filter: FactoryVehicleEquipmentOptionsFilterInput): [FactoryVehicleEquipment!]!
+}
+
+input FactoryVehicleEquipmentOptionsFilterInput {
+  excludeWheels: Boolean
+  selectedByCustomer: Boolean
+  visibleForCustomers: Boolean
+}
+
+type FactoryVehicleEquipmentPackage implements EquipmentPackage {
+  contents: [EquipmentPackageContent!]!
+  optionCode: String!
+  equipment(filter: VehicleStateEquipmentOptionsFilterInput): [FactoryVehicleEquipment!]!
+}
+
+type FactoryVehicleExteriorColor implements ExteriorColor {
+  optionCode: String!
+
+  """tag to provide a common way to filter colors"""
+  colorTag: ColorTag
+  customColorCode: String
+
+  """type of this exterior color (uni or metallic)"""
+  exteriorColorType: TranslatedEnumValue
+
+  """color hex code e.g. #000000"""
+  hexCode: String
+  isCustomColor: Boolean
+  name: TranslatedText!
+  optionType: String
+
+  """prices can only be accessed with price viewer access rights"""
+  price: Price
+}
+
+type FactoryVehicleInterior implements Interior {
+  optionCode: String!
+
+  """
+  all information about the color of the interior e.g. seat color or color tag
+  """
+  color: InteriorColor
+  description: TranslatedText!
+  imageKeys: [String!]!
+
+  """material of the interior e.g. leather or alcantara"""
+  material: TranslatedEnumValue
+  name: TranslatedText!
+  optionType: String
+
+  """prices can only be accessed with price viewer access rights"""
+  price: Price
+}
+
+type FactoryVehicleMetaData {
+  lastModified: DateTime!
+}
+
+type FactoryVehicleRoofColor implements RoofColor {
+  optionCode: String!
+
+  """tag to provide a common way to filter colors"""
+  colorTag: ColorTag
+
+  """color hex code e.g. #000000"""
+  hexCode: String
+  name: TranslatedText!
+  optionType: String
+
+  """prices can only be accessed with price viewer access rights"""
+  price: Price
+}
+
+type FactoryVehicleWheels implements Wheels & Equipment {
+  previewImageKey: String
+  categoryKey: String!
+  description: TranslatedText!
+  imageKeys: [String!]!
+  name: TranslatedText!
+  optionCode: String!
+  optionType: String
+
+  """prices can only be accessed with price viewer access rights"""
+  price: Price
+  selectedByCustomer: Boolean!
+  sortIndex: Int
+  tags: [EquipmentTag!]!
+  visibleForCustomers: Boolean!
+  category: FactoryVehicleEquipmentCategoryDetails!
+}
+
+type FloatUnitMeasurementValue implements UnitMeasurementValue & MeasurementValue & FormattedMarketingValue {
+  precision: Int!
+  raw: Float!
+  displayInMarketplace: Boolean
+  formatted: TranslatedText!
+  formattedInMarketplace: TranslatedText
+  formattedWithUnit: TranslatedText!
+  unit: TranslatedText!
+}
+
+type FloatValue {
+  formatted: TranslatedText!
+  raw: Float!
+}
+
+type FormattedFrenchEnergyEfficiency {
+  co2Emission: String!
+  energyEfficiencyClass: String!
+  energyEfficiencyClassLabel: String!
+}
+
+type FormattedGermanEnergyEfficiency {
+  co2Emission: String!
+  electricityConsumption: String!
+  electricityCostPerUnit: String!
+  electricityTaxFactor: String!
+  energyEfficiencyClass: String
+  energyEfficiencyClassLabel: String!
+  exemptionLimit: String!
+  fuelConsumptionCombined: String!
+  fuelConsumptionExtraUrban: String!
+  fuelConsumptionUrban: String!
+  fuelCostPerUnit: String!
+  fuelTaxFactor: String!
+  fuelType: String!
+  model: String!
+  otherEnergyTypes: String!
+  power: String!
+  powerLabel: String!
+  transmission: String!
+  unladenWeight: String!
+  yearlyElectricityCostNEDC: String!
+  yearlyElectricityCostWLTP: String!
+  yearlyFuelCostNEDC: String!
+  yearlyFuelCostWLTP: String!
+  yearlyKilometers: String!
+  yearlyTax: String!
+}
+
+type FormattedInt {
+  formatted: TranslatedText!
+  raw: Int!
+}
+
+interface FormattedMarketingValue {
+  formattedInMarketplace: TranslatedText
+}
+
+type FormattedSwissEnergyEfficiency {
+  co2Emission: FormattedSwissEnergyEfficiencyLabeledValue!
+  electricityConsumption: FormattedSwissEnergyEfficiencyLabeledValue
+  energyEfficiencyClass: FormattedSwissEnergyEfficiencyClass!
+  fuelConsumption: FormattedSwissEnergyEfficiencyLabeledValue
+}
+
+type FormattedSwissEnergyEfficiencyClass {
+  value: String!
+  label: TranslatedText!
+}
+
+type FormattedSwissEnergyEfficiencyLabeledValue {
+  label: TranslatedText!
+  value: TranslatedText!
+}
+
+type FrenchEnergyEfficiency {
+  raw: RawFrenchEnergyEfficiency
+  calculateCritAir(firstRegistrationDate: Date, vehicleCondition: VehicleCondition!): CritAir
+  formatted: FormattedFrenchEnergyEfficiency
+}
+
+type FuelConsumptionMeasurement implements Measurement & FormattedMarketingValue {
+  b35: FloatUnitMeasurementValue!
+  milgluk: FloatUnitMeasurementValue!
+  milglus: FloatUnitMeasurementValue!
+  vkon: FloatUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type FuelConsumptionTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: FuelConsumptionMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+type FuelTankCapacityMeasurement implements Measurement & FormattedMarketingValue {
+  gll: FloatUnitMeasurementValue!
+  ltr: IntUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type FuelTankCapacityTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: FuelTankCapacityMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+type GeneralChSpecificsConsumption {
+  co2EmissionsFuelAndElectric: EmissionTechnicalDataItem
+  fuelEquivalent: FuelConsumptionTechnicalDataItem
+}
+
+type GeneralConsumptionEmission {
+  chSpecifics: GeneralChSpecificsConsumption!
+  co2Emissions: EmissionTechnicalDataItem
+  electricityConsumption: GeneralElectricityConsumption!
+  fuelConsumption: GeneralFuelConsumption!
+}
+
+type GeneralElectricityConsumption {
+  combined: ElectricConsumptionTechnicalDataItem
+}
+
+type GeneralFuelConsumption {
+  combined: FuelConsumptionTechnicalDataItem
+  extraUrban: FuelConsumptionTechnicalDataItem
+  urban: FuelConsumptionTechnicalDataItem
+  usSpecifics: GeneralFuelConsumptionUsSpecifics!
+}
+
+type GeneralFuelConsumptionUsSpecifics {
+  combinedMpge: ElectricConsumptionEquivalentTechnicalDataItem
+}
+
+type GermanEnergyEfficiency {
+  raw: RawGermanEnergyEfficiency
+  formatted: FormattedGermanEnergyEfficiency
+}
+
+type HybridPower {
+  combined: PowerItem
+  combustionEngine: PowerItem
+  electricEngine: PowerItem
+}
+
+interface Interior {
+  """
+  all information about the color of the interior e.g. seat color or color tag
+  """
+  color: InteriorColor
+  description: TranslatedText!
+  imageKeys: [String!]!
+
+  """material of the interior e.g. leather or alcantara"""
+  material: TranslatedEnumValue
+  name: TranslatedText!
+  optionCode: String
+  optionType: String
+
+  """prices can only be accessed with price viewer access rights"""
+  price: Price
+}
+
+type InteriorColor {
+  """color hex code of the cockpit color e.g. #000000"""
+  cockpitColorHexCode: String!
+
+  """color hex code of the cockpit stitching color e.g. #000000"""
+  cockpitStitchingColorHexCode: String!
+
+  """tag to provide a common way to filter colors"""
+  colorTag: ColorTag
+  isCustomColor: Boolean!
+
+  """color hex code of the seat color e.g. #000000"""
+  seatColorHexCode: String!
+
+  """color hex code of the seat stitching color e.g. #000000"""
+  seatStitchingColorHexCode: String!
+}
+
+enum InteriorMaterial {
+  LEATHER
+  LEATHER_ALCANTARA
+  LEATHER_FREE
+  STANDARD_PARTIAL_LEATHER
+  STANDARD_ALCANTARA
+  OTHERS
+}
+
+type InteriorMutations {
+  manual(inventoryId: String!, interior: ManualInteriorModificationInput!): VehicleStateMutationResult!
+  selected(inventoryId: String!, interior: SelectedOptionCodeModificationInput!): VehicleStateMutationResult!
+}
+
+type IntMeasurementValue implements MeasurementValue & FormattedMarketingValue {
+  raw: Int!
+  displayInMarketplace: Boolean
+  formatted: TranslatedText!
+  formattedInMarketplace: TranslatedText
+}
+
+type IntRangeUnitMeasurementValue implements UnitMeasurementValue & MeasurementValue & FormattedMarketingValue {
+  from: FormattedInt!
+  to: FormattedInt!
+  displayInMarketplace: Boolean
+  formatted: TranslatedText!
+  formattedInMarketplace: TranslatedText
+  formattedWithUnit: TranslatedText!
+  unit: TranslatedText!
+}
+
+type IntTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: IntMeasurementValue!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+type IntUnitMeasurementValue implements UnitMeasurementValue & MeasurementValue & FormattedMarketingValue {
+  raw: Int!
+  displayInMarketplace: Boolean
+  formatted: TranslatedText!
+  formattedInMarketplace: TranslatedText
+  formattedWithUnit: TranslatedText!
+  unit: TranslatedText!
+}
+
+enum IrisBackground {
+  HORIZONTLINE
+  TRANSPARENT
+  TRANSPARENT_HORIZONTLINE
+}
+
+type IrisConfiguratorImage {
+  key: String!
+  url: String!
+}
+
+input IrisConfiguratorImagesRequestInput {
+  background: IrisBackground!
+  environment: IrisEnvironment!
+  format: IrisFormat!
+  height: Int!
+  isoCountry: String!
+  states: IrisStatesInput!
+  width: Int!
+}
+
+enum IrisEnvironment {
+  STUDIO
+  OUTDOOR
+}
+
+enum IrisFormat {
+  JPG
+  PNG
+  WEBP
+}
+
+input IrisStatesInput {
+  top: Top
+}
+
+type Load {
+  maximumLoad: VehicleWeightTechnicalDataItem
+  maximumRoofLoad: VehicleWeightTechnicalDataItem
+}
+
+type Luggage {
+  frontVolume: LuggageVolumeTechnicalDataItem
+  maxVolumeRear: LuggageVolumeTechnicalDataItem
+  rearVolume: LuggageVolumeTechnicalDataItem
+  volume: LuggageVolumeTechnicalDataItem
+  volumeSeatsFolded: LuggageVolumeTechnicalDataItem
+}
+
+type LuggageVolumeMeasurement implements Measurement & FormattedMarketingValue {
+  ftq: FloatUnitMeasurementValue!
+  ltr: IntUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type LuggageVolumeTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: LuggageVolumeMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+input ManualExteriorColorModificationInput {
+  colorTagKey: String!
+  exteriorColorType: ExteriorColorType!
+  hexCode: String!
+  name: TranslatedTextInput!
+}
+
+input ManualInteriorModificationInput {
+  cockpitColorHexCode: String!
+  cockpitStitchingColorHexCode: String!
+  colorTagKey: String!
+  material: InteriorMaterial!
+  name: TranslatedTextInput!
+  seatColorHexCode: String!
+  seatStitchingColorHexCode: String!
+}
+
+input ManualOrderTypeModificationInput {
+  derivativeKey: String!
+  driveTrain: DriveTrain!
+  engineType: EngineType!
+  modelGenerationKey: String!
+  modelName: TranslatedTextInput!
+  modelYear: Int!
+}
+
+input ManualRoofColorModificationInput {
+  colorTagKey: String!
+  hexCode: String!
+  name: TranslatedTextInput!
+}
+
+input ManualTransmissionModificationInput {
+  equipmentTagKey: String!
+  name: TranslatedTextInput!
+}
+
+input ManualWheelsModificationInput {
+  equipmentTagKeys: [String!]!
+  name: TranslatedTextInput!
+}
+
+type MarketingConsumptionEmission {
+  co2Emissions: EmissionTechnicalDataItem
+  electricityConsumption: ElectricConsumptionTechnicalDataItem
+  fuelConsumption: FuelConsumptionTechnicalDataItem
+}
+
+type MaxGroundClearance {
+  airSuspensionHighLevel: BodyDetailLengthTechnicalDataItem
+  airSuspensionNormalLevel: BodyDetailLengthTechnicalDataItem
+  steelSuspension: BodyDetailLengthTechnicalDataItem
+}
+
+type MaxPowerAtRpm {
+  combined: MaxPowerAtRpmValue!
+  combustionEngine: MaxPowerAtRpmValue!
+  electricEngine: MaxPowerAtRpmValue!
+}
+
+type MaxPowerAtRpmValue {
+  range: RpmRangeTechnicalDataItem
+  value: RpmTechnicalDataItem
+}
+
+type MaxPowerPerLiter implements FormattedMarketingValue {
+  formattedInMarketplace: TranslatedText
+  hpl: MaxPowerPerLiterWithDisclaimer
+  kwl: MaxPowerPerLiterWithDisclaimer
+  name: TranslatedText!
+  psl: MaxPowerPerLiterWithDisclaimer
+}
+
+type MaxPowerPerLiterWithDisclaimer {
+  disclaimer: TranslatedText
+  value: FloatUnitMeasurementValue!
+}
+
+type MaxTorque {
+  combined: TorqueTechnicalDataItem
+  combustionEngine: TorqueTechnicalDataItem
+  combustionEngineWithOverboost: TorqueTechnicalDataItem
+  electricEngine: TorqueTechnicalDataItem
+  launchControl: TorqueTechnicalDataItem
+}
+
+type MaxTorqueAtRpm {
+  combined: MaxTorqueAtRpmValue!
+  combustionEngine: MaxTorqueAtRpmCombustionEngineValue!
+  electricEngine: MaxTorqueAtRpmValue!
+}
+
+type MaxTorqueAtRpmCombustionEngineValue {
+  range: RpmRangeTechnicalDataItem
+  rangeWithOverboost: RpmRangeTechnicalDataItem
+  value: RpmTechnicalDataItem
+  valueWithOverboost: RpmTechnicalDataItem
+}
+
+type MaxTorqueAtRpmValue {
+  range: RpmRangeTechnicalDataItem
+  value: RpmTechnicalDataItem
+}
+
+type MaxWadingDepth {
+  airSuspensionHighLevel: BodyDetailLengthTechnicalDataItem
+  steelSuspension: BodyDetailLengthTechnicalDataItem
+}
+
+type MeasuredFloat {
+  formattedWithUnit: TranslatedText!
+  unit: TranslatedText!
+  formatted: TranslatedText!
+  raw: Float!
+}
+
+interface Measurement {
+  formattedInMarketplace: TranslatedText
+}
+
+interface MeasurementValue {
+  displayInMarketplace: Boolean
+  formatted: TranslatedText!
+  formattedInMarketplace: TranslatedText
+}
+
+type ModelGeneration {
+  classic: Boolean!
+  key: String!
+  name: TranslatedText!
+}
+
+type ModelInformation {
+  derivative: Derivative
+  modelGeneration: ModelGeneration
+  modelSeries: ModelSeries
+}
+
+type ModelSeries {
+  key: String!
+  name: TranslatedText!
+}
+
+type MustHaveFeatures {
+  missingFeatures: [FactoryVehicleEquipment!]!
+  includedFeatures: [FactoryVehicleEquipment!]!
+}
+
+type Mutation {
+  vehicleState: VehicleStateMutations!
+}
+
+input OptionFilterInput {
+  modelGenerationKeys: [String!]!
+  optionCode: String!
+}
+
+type OptionLoad {
+  lowerBound: Int!
+
+  """Percentage of how many vehicles have fewer options configured"""
+  score: Int!
+  scoreClass: OptionsLoadScoreClass!
+  upperBound: Int!
+}
+
+type OptionRating {
+  mustHaveFeatures: MustHaveFeatures
+  optionLoad: OptionLoad
+}
+
+enum OptionsLoadScoreClass {
+  LOW
+  AVERAGE
+  HIGH
+}
+
+type OrderTypeBasicInformation {
+  driveTrain: TranslatedEnumValue
+  engineType: TranslatedEnumValue
+  limited: Boolean
+  name: TranslatedText!
+  pressEmbargoDate: Date
+  special: Boolean
+}
+
+type OrderTypeMutations {
+  manual(inventoryId: String!, orderType: ManualOrderTypeModificationInput!): VehicleStateMutationResult!
+  selected(inventoryId: String!, orderType: SelectedOrderTypeModificationInput!): VehicleStateMutationResult!
+}
+
+type Performance {
+  acceleration: Acceleration!
+  electricalTopSpeed: SpeedTechnicalDataItem
+  topSpeed: SpeedTechnicalDataItem
+}
+
+type PorscheCodeServicePrice {
+  currency: String!
+  formattedWithUnit: TranslatedText!
+  raw: Float!
+}
+
+type Power {
+  combustion: CombustionPower!
+  electric: ElectricPower!
+  hybrid: HybridPower!
+
+  """
+  This field provides an easy access to the single power value that is relevant for marketing a vehicle
+  """
+  marketing: PowerItem
+}
+
+type PowerItem implements FormattedMarketingValue {
+  bhp: PowerWithDisclaimer
+  formattedInMarketplace: TranslatedText
+  kwt: PowerWithDisclaimer
+  n12: PowerWithDisclaimer
+  name: TranslatedText!
+}
+
+type PowerWithDisclaimer {
+  disclaimer: TranslatedText
+  value: IntUnitMeasurementValue!
+}
+
+"""prices can only be accessed with price viewer access rights"""
+type Price {
+  currencyCode: String!
+  gross: PriceValue!
+  net: PriceValue!
+}
+
+"""prices can only be accessed with price viewer access rights"""
+type PriceValue {
+  formattedWithUnit: TranslatedText!
+  raw: Float!
+}
+
+type Query {
+  """Find up to 50 VINs matching the given filter"""
+  listVins(filter: VinMappingFilterInput!): VinMappingResult!
+
+  """
+  Provides vehicle data for vehicles configured in Porsche Car Configurator. Can
+  only be accessed with customer specified vehicle viewer access rights
+  """
+  vehicleDataForCustomerSpecifiedVehicle(
+    porscheCode: String!
+    languageTags: [String!]!
+
+    """
+    Porsche Finder marketplace code, e.g. 'us' or 'de'. Determines which
+    technical data attributes are visible to customer and which units are used
+    in formatted values and which consumption/emission data is provided as
+    marketing value (WLTP vs NEFZ)
+    """
+    marketplaceCode: String
+  ): CustomerSpecifiedVehicle!
+  vehicleData(vin: String!, languageTags: [String!]!, marketplaceCode: String): FactoryVehicle!
+
+  """
+  $.errors[0].extensions.classification will be "EntityNotReadyException" if the vehicle state is not yet ready
+  """
+  vehicleState(inventoryId: String!, languageTags: [String!]!): VehicleState!
+  vehicleStates(filter: VehicleStateFilterInput!, limit: Int!): [VehicleStateSearchResult!]!
+  vin(inventoryId: String!): String!
+}
+
+type QuoteMonth {
+  month: Int!
+  year: Int!
+}
+
+type RampBreakOverAngle {
+  airSuspensionHighLevel: AngleTechnicalDataItem
+  steelSuspension: AngleTechnicalDataItem
+}
+
+type Range {
+  epa: RangeTechnicalDataItem
+  wltp: WltpRange!
+}
+
+type RangeMeasurement implements Measurement & FormattedMarketingValue {
+  km: IntUnitMeasurementValue!
+  smi: IntUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type RangeTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: RangeMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+type Rating {
+  optionRating: OptionRating!
+}
+
+type RawFrenchEnergyEfficiency {
+  cvNumber: Float!
+  energyEfficiencyClass: String!
+}
+
+type RawGermanEnergyEfficiency {
+  electricityCostPerUnit: MeasuredFloat
+  electricityTaxFactor: FloatValue
+  energyEfficiencyClass: String
+  exemptionLimit: MeasuredFloat!
+  fuelCostPerUnit: MeasuredFloat
+  fuelTaxFactor: FloatValue
+  yearlyElectricityCostNEDC: MeasuredFloat
+  yearlyElectricityCostWLTP: MeasuredFloat
+  yearlyFuelCostNEDC: MeasuredFloat
+  yearlyFuelCostWLTP: MeasuredFloat
+  yearlyKilometers: MeasuredFloat!
+  yearlyTax: MeasuredFloat!
+}
+
+type RawSwissEnergyEfficiency {
+  consumptionInPetrolEquivalent: Float!
+  emissionsFromFuelProvision: Float!
+  energyEfficiencyClass: String!
+  isWltp: Boolean!
+}
+
+interface RoofColor {
+  """tag to provide a common way to filter colors"""
+  colorTag: ColorTag
+
+  """color hex code e.g. #000000"""
+  hexCode: String
+  name: TranslatedText!
+  optionCode: String
+  optionType: String
+
+  """prices can only be accessed with price viewer access rights"""
+  price: Price
+}
+
+type RoofColorMutations {
+  manual(inventoryId: String!, roofColor: ManualRoofColorModificationInput!): VehicleStateMutationResult!
+  selected(inventoryId: String!, roofColor: SelectedOptionCodeModificationInput!): VehicleStateMutationResult!
+}
+
+type RpmMeasurement implements Measurement & FormattedMarketingValue {
+  rpm: IntUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type RpmRangeMeasurement implements Measurement & FormattedMarketingValue {
+  rpm: IntRangeUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type RpmRangeTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: RpmRangeMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+type RpmTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: RpmMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+type SalesArea {
+  countryVehicleSpecification: String
+  ggId: Int
+  importerNumber: Int
+}
+
+input SelectedOptionCodeModificationInput {
+  optionCode: String!
+}
+
+input SelectedOrderTypeModificationInput {
+  modelYear: Int!
+  orderTypeCode: String!
+}
+
+type SpeedMeasurement implements Measurement & FormattedMarketingValue {
+  hm: IntUnitMeasurementValue!
+  kmh: IntUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type SpeedTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: SpeedMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+type StandardEquipment {
+  texts: [StandardEquipmentTextEntry!]!
+}
+
+type StandardEquipmentCategory {
+  items: [String!]!
+  name: String!
+}
+
+type StandardEquipmentTextEntry {
+  languageTag: String!
+  values: [StandardEquipmentCategory!]!
+}
+
+type SwissEnergyEfficiency {
+  formatted: FormattedSwissEnergyEfficiency
+  raw: RawSwissEnergyEfficiency
+}
+
+type TechnicalAttribute {
+  disclaimer: TranslatedText
+  value: TranslatedText!
+  name: TranslatedText!
+}
+
+type TechnicalData {
+  body: Body!
+  categorized: [TechnicalDataCategory!]!
+  charging: Charging!
+  consumptionEmission: ConsumptionEmission!
+  engine: Engine!
+  performance: Performance!
+  range: Range!
+}
+
+type TechnicalDataCategory {
+  technicalAttributes: [TechnicalAttribute!]!
+  name: TranslatedText!
+}
+
+interface TechnicalDataItem {
+  disclaimer: TranslatedText
+  value: FormattedMarketingValue!
+  name: TranslatedText!
+}
+
+interface TechnicalDataItemInterface {
+  disclaimer: TranslatedText
+  value: FormattedMarketingValue!
+  name: TranslatedText!
+}
+
+type TechnicalDataTranslatedEnumValue implements FormattedMarketingValue {
+  displayInMarketplace: Boolean
+  formattedInMarketplace: TranslatedText
+  key: String!
+  name: TranslatedText!
+}
+
+enum Top {
+  CLOSED
+  OPEN
+}
+
+type TorqueMeasurement implements Measurement & FormattedMarketingValue {
+  f17: IntUnitMeasurementValue!
+  nu: IntUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type TorqueTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: TorqueMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+type Track {
+  front: VehicleLengthTechnicalDataItem
+  rear: VehicleLengthTechnicalDataItem
+}
+
+type TrailerCoupling {
+  maxTowingLoadBraked: VehicleWeightTechnicalDataItem
+  maxTowingLoadUnBraked: VehicleWeightTechnicalDataItem
+  maxVerticalLoad: VehicleWeightTechnicalDataItem
+}
+
+type TranslatedEnumValue {
+  key: String!
+  name: TranslatedText!
+}
+
+type TranslatedEnumValueTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: TechnicalDataTranslatedEnumValue!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+"""can contain multiple translations"""
+type TranslatedText {
+  translations: [Translation!]!
+}
+
+input TranslatedTextInput {
+  translations: [TranslatedTextTranslationInput!]!
+}
+
+input TranslatedTextTranslationInput {
+  languageTag: String!
+  translation: String!
+}
+
+type TranslatedTransmission {
+  isAutomatic: Boolean!
+  key: Transmission!
+  name: TranslatedText!
+  optionName: TranslatedText!
+}
+
+type Translation {
+  languageTag: String!
+  translation: String!
+}
+
+enum Transmission {
+  MANUAL
+  TIPTRONIC
+  PDK
+}
+
+type TransmissionMutations {
+  manual(inventoryId: String!, transmission: ManualTransmissionModificationInput!): VehicleStateMutationResult!
+  selected(inventoryId: String!, transmission: SelectedOptionCodeModificationInput!): VehicleStateMutationResult!
+}
+
+type TurningRadiusMeasurement implements Measurement & FormattedMarketingValue {
+  fot: FloatUnitMeasurementValue!
+  mtr: FloatUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type TurningRadiusTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: TurningRadiusMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+type Tyre {
+  dotCodeShort: String!
+  eprel: EprelTyre
+  productionWeek: String!
+}
+
+enum TyreLabelFormat {
+  SVG
+  PDF
+  PNG
+}
+
+type Tyres {
+  frontLeft: Tyre!
+  frontRight: Tyre!
+  rearLeft: Tyre!
+  rearRight: Tyre!
+}
+
+interface UnitMeasurementValue {
+  formattedWithUnit: TranslatedText!
+  unit: TranslatedText!
+  displayInMarketplace: Boolean
+  formatted: TranslatedText!
+  formattedInMarketplace: TranslatedText
+}
+
+type UnladenWeight {
+  din: VehicleWeightTechnicalDataItem
+  ec: VehicleWeightTechnicalDataItem
+  individualVehicle: VehicleWeightTechnicalDataItem
+}
+
+type VehicleBasicData {
+  commissionNumber: String
+  dealer: String
+  driveSide: TranslatedEnumValue
+  engines: [String!]!
+  factory: Factory
+  orderSpecification: String
+
+  """prices can only be accessed with price viewer access rights"""
+  price: VehiclePrice
+  productionNumber: String
+  quoteMonth: QuoteMonth
+  shippingLocation: String
+  transmissions: [String!]!
+  tyres: Tyres
+  zp8Date: Date
+}
+
+enum VehicleCondition {
+  NEW
+  USED
+}
+
+type VehicleLengthMeasurement implements Measurement & FormattedMarketingValue {
+  inh: FloatUnitMeasurementValue!
+  mmtt: IntUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type VehicleLengthTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: VehicleLengthMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+"""prices can only be accessed with price viewer access rights"""
+type VehiclePrice {
+  modelBasePrice: Price!
+  optionPriceSum: Price!
+  priceDate: Date!
+  totalPrice: Price!
+}
+
+type VehicleState {
+  configuratorImages: VehicleStateConfiguratorImages!
+  energyEfficiency: EnergyEfficiency!
+  equipmentInformation: VehicleStateEquipmentInformation!
+  exteriorColor: VehicleStateExteriorColor
+  interior: VehicleStateInterior
+  metaData: VehicleStateMetaData!
+  modelInformation: ModelInformation!
+  modelYear: Int!
+  orderTypeBasicInformation: OrderTypeBasicInformation!
+  orderTypeCode: String
+  rating: Rating!
+  roofColor: VehicleStateRoofColor
+  salesArea: SalesArea!
+  standardEquipment: StandardEquipment!
+  technicalData: TechnicalData!
+  transmission: TranslatedTransmission
+  vehicleBasicData: VehicleBasicData!
+  vin: String!
+
+  """provides links to the car configurator service."""
+  carConfiguratorLink: TranslatedText
+}
+
+type VehicleStateConfiguratorImages {
+  """
+  Provides picserv configurator image urls and metadata, only for vehicles with
+  model year >= 2016. Can only be accessed with image viewer access rights.
+  """
+  picserv: ConfiguratorImagesMetadata
+
+  """
+  Provides IRIS configurator image urls, only for the last few model years. Can
+  only be accessed with image viewer access rights.
+  """
+  iris(irisConfiguratorImagesRequest: IrisConfiguratorImagesRequestInput!): [IrisConfiguratorImage!]
+}
+
+type VehicleStateEquipment implements Equipment {
+  categoryKey: String!
+  description: TranslatedText!
+  imageKeys: [String!]!
+  name: TranslatedText!
+  optionCode: String
+  optionType: String
+
+  """prices can only be accessed with price viewer access rights"""
+  price: Price
+  selectedByCustomer: Boolean!
+  sortIndex: Int
+  tags: [EquipmentTag!]!
+  visibleForCustomers: Boolean!
+  category: VehicleStateEquipmentCategoryDetails!
+}
+
+type VehicleStateEquipmentCategoryDetails implements EquipmentCategoryDetails {
+  key: String!
+  name: TranslatedText!
+  sortIndex: Int!
+  equipment(filter: VehicleStateEquipmentOptionsFilterInput): [VehicleStateEquipment!]!
+}
+
+type VehicleStateEquipmentInformation implements EquipmentInformation {
+  options: VehicleStateEquipmentOptions!
+  packages: [VehicleStateEquipmentPackage!]!
+  categories: [VehicleStateEquipmentCategoryDetails!]!
+}
+
+type VehicleStateEquipmentOptions implements EquipmentOptions {
+  wheels: VehicleStateWheels
+
+  """Do NOT use. This is just a field used for internal purposes!"""
+  engine: VehicleStateEquipment
+  list(filter: VehicleStateEquipmentOptionsFilterInput): [VehicleStateEquipment!]!
+
+  """
+  Do NOT use to generally get the transmission of a vehicle! For that purpose
+  you should only use the transmission field in on top vehicle data level
+  instead. This is only for use cases where you need specific option information
+  about the a transmission, which is not available on all models.
+  """
+  transmission: VehicleStateEquipment
+}
+
+input VehicleStateEquipmentOptionsFilterInput {
+  excludeEngines: Boolean
+  excludeTransmission: Boolean
+  excludeWheels: Boolean
+  selectedByCustomer: Boolean
+  visibleForCustomers: Boolean
+}
+
+type VehicleStateEquipmentPackage implements EquipmentPackage {
+  contents: [EquipmentPackageContent!]!
+  optionCode: String!
+  equipment(filter: VehicleStateEquipmentOptionsFilterInput): [VehicleStateEquipment!]!
+}
+
+type VehicleStateExteriorColor implements ExteriorColor {
+  """tag to provide a common way to filter colors"""
+  colorTag: ColorTag
+  customColorCode: String
+
+  """type of this exterior color (uni or metallic)"""
+  exteriorColorType: TranslatedEnumValue
+
+  """color hex code e.g. #000000"""
+  hexCode: String
+  isCustomColor: Boolean
+  name: TranslatedText!
+  optionCode: String
+  optionType: String
+
+  """prices can only be accessed with price viewer access rights"""
+  price: Price
+}
+
+input VehicleStateFilterInput {
+  customExteriorColor: CustomColorFilterInput
+  customInteriorColor: CustomColorFilterInput
+  exteriorColor: OptionFilterInput
+  interior: OptionFilterInput
+  roofColor: OptionFilterInput
+}
+
+type VehicleStateInterior implements Interior {
+  """
+  all information about the color of the interior e.g. seat color or color tag
+  """
+  color: InteriorColor
+  description: TranslatedText!
+  imageKeys: [String!]!
+
+  """material of the interior e.g. leather or alcantara"""
+  material: TranslatedEnumValue
+  name: TranslatedText!
+  optionCode: String
+  optionType: String
+
+  """prices can only be accessed with price viewer access rights"""
+  price: Price
+}
+
+type VehicleStateMetaData {
+  archived: Boolean!
+  lastModified: DateTime!
+
+  """
+  indicates that this vehicle state has all required data for publishing in Porsche Finder
+  """
+  isComplete: Boolean!
+
+  """
+  indicates that for this vehicle state the order type can be modified. Only available for maintainers
+  """
+  isOrderTypeEditable: Boolean!
+
+  """
+  indicates that a roof color makes sense for the body type of this vehicle state. Only available for maintainers
+  """
+  isRoofColorAvailable: Boolean!
+
+  """
+  indicates that for this vehicle state the transmission can be modified. Only available for maintainers
+  """
+  isTransmissionEditable: Boolean!
+}
+
+type VehicleStateMutationResult {
+  success: Boolean!
+  vehicleState(languageTags: [String!]!): VehicleState!
+}
+
+type VehicleStateMutations {
+  engine: EngineMutations!
+  equipment: EquipmentMutations!
+  exteriorColor: ExteriorColorMutations!
+  interior: InteriorMutations!
+  orderType: OrderTypeMutations!
+  roofColor: RoofColorMutations!
+  transmission: TransmissionMutations!
+  wheels: WheelsMutations!
+}
+
+type VehicleStateRoofColor implements RoofColor {
+  """tag to provide a common way to filter colors"""
+  colorTag: ColorTag
+
+  """color hex code e.g. #000000"""
+  hexCode: String
+  name: TranslatedText!
+  optionCode: String
+  optionType: String
+
+  """prices can only be accessed with price viewer access rights"""
+  price: Price
+}
+
+type VehicleStateSearchResult {
+  inventoryId: String!
+  vin: String!
+  vehicleImageIds: [String!]!
+}
+
+type VehicleStateWheels implements Wheels & Equipment {
+  previewImageKey: String
+  categoryKey: String!
+  description: TranslatedText!
+  imageKeys: [String!]!
+  name: TranslatedText!
+  optionCode: String
+  optionType: String
+
+  """prices can only be accessed with price viewer access rights"""
+  price: Price
+  selectedByCustomer: Boolean!
+  sortIndex: Int
+  tags: [EquipmentTag!]!
+  visibleForCustomers: Boolean!
+  category: VehicleStateEquipmentCategoryDetails!
+}
+
+type VehicleWeightMeasurement implements Measurement & FormattedMarketingValue {
+  kgm: IntUnitMeasurementValue!
+  lbr: IntUnitMeasurementValue!
+  formattedInMarketplace: TranslatedText
+}
+
+type VehicleWeightTechnicalDataItem implements TechnicalDataItem & TechnicalDataItemInterface {
+  value: VehicleWeightMeasurement!
+  disclaimer: TranslatedText
+  name: TranslatedText!
+}
+
+input VinMappingFilterInput {
+  """optional limit for result size, defaults to 50, max value is 1000"""
+  limit: Int
+  modelYears: [Int!]!
+  optionCodes: [String!]
+  orderTypeCodes: [String!]
+}
+
+type VinMappingResult {
+  totalCount: Int!
+  vins: [String!]!
+}
+
+interface Wheels {
+  previewImageKey: String
+  categoryKey: String!
+  description: TranslatedText!
+  imageKeys: [String!]!
+  name: TranslatedText!
+  optionCode: String
+  optionType: String
+
+  """prices can only be accessed with price viewer access rights"""
+  price: Price
+  selectedByCustomer: Boolean!
+  sortIndex: Int
+  tags: [EquipmentTag!]!
+  visibleForCustomers: Boolean!
+  category: EquipmentCategoryDetails!
+}
+
+type WheelsMutations {
+  manual(inventoryId: String!, wheels: ManualWheelsModificationInput!): VehicleStateMutationResult!
+  selected(inventoryId: String!, wheels: SelectedOptionCodeModificationInput!): VehicleStateMutationResult!
+}
+
+type Width {
+  withMirrors: VehicleLengthTechnicalDataItem
+  withoutMirrors: VehicleLengthTechnicalDataItem
+}
+
+type WltpCO2Emissions {
+  combined: EmissionTechnicalDataItem
+  extraHigh: EmissionTechnicalDataItem
+  high: EmissionTechnicalDataItem
+  low: EmissionTechnicalDataItem
+  medium: EmissionTechnicalDataItem
+}
+
+type WltpConsumptionEmission {
+  co2Emissions: WltpCO2Emissions!
+  electricityConsumption: WltpElectricityConsumption!
+  fuelConsumption: WltpFuelConsumption!
+}
+
+type WltpElectricityConsumption {
+  combined: ElectricConsumptionTechnicalDataItem
+  extraHigh: ElectricConsumptionTechnicalDataItem
+  high: ElectricConsumptionTechnicalDataItem
+  low: ElectricConsumptionTechnicalDataItem
+  medium: ElectricConsumptionTechnicalDataItem
+}
+
+type WltpFuelConsumption {
+  combined: FuelConsumptionTechnicalDataItem
+  extraHigh: FuelConsumptionTechnicalDataItem
+  high: FuelConsumptionTechnicalDataItem
+  low: FuelConsumptionTechnicalDataItem
+  medium: FuelConsumptionTechnicalDataItem
+}
+
+type WltpRange {
+  cityConfigSpecific: RangeTechnicalDataItem
+  combinedConfigSpecific: RangeTechnicalDataItem
+  electricalCityConfigSpecific: RangeTechnicalDataItem
+  electricalConfigSpecific: RangeTechnicalDataItem
+  longDistance: RangeTechnicalDataItem
+}
+

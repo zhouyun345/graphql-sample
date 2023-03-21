@@ -1,8 +1,0 @@
-{
-    artifactRepositorys(names: ["spring-releases","spring-milestones"]){
-        id,
-        name,
-        url,
-        snapshotsEnabled
-    }
-}
