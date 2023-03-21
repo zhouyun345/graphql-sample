@@ -1,4 +1,4 @@
-package cn.zy;
+package cn.zy.repo;
 
 import cn.zy.client.ArtifactRepository;
 import com.graphql_java_generator.client.graphqlrepository.GraphQLRepository;

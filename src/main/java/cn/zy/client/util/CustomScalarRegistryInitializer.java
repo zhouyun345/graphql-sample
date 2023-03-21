@@ -4,7 +4,6 @@ package cn.zy.client.util;
 import com.graphql_java_generator.customscalars.CustomScalarRegistry;
 import com.graphql_java_generator.customscalars.CustomScalarRegistryImpl;
 import com.graphql_java_generator.customscalars.GraphQLScalarTypeIDClient;
-import com.graphql_java_generator.customscalars.GraphQLScalarTypeIDServer;
 
 @SuppressWarnings("unused")
 public class CustomScalarRegistryInitializer {
@@ -20,7 +19,6 @@ public class CustomScalarRegistryInitializer {
 		customScalarRegistry.registerGraphQLScalarType(GraphQLScalarTypeIDClient.ID, String.class);		
 
 		customScalarRegistry.registerGraphQLScalarType(com.graphql_java_generator.customscalars.GraphQLScalarTypeDate.Date, java.util.Date.class);
-		customScalarRegistry.registerGraphQLScalarType(com.graphql_java_generator.customscalars.GraphQLScalarTypeDateTime, java.time.LocalDateTime.class);
 
 		CustomScalarRegistryImpl.setCustomScalarRegistry("", customScalarRegistry);
 		return customScalarRegistry;

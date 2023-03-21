@@ -50,41 +50,28 @@ public class Query
 		// No action
 	}
 
-	@JsonProperty("listVins")
-	@GraphQLInputParameters(names = {"filter"}, types = {"VinMappingFilterInput"}, mandatories = {true}, listDepths = {0}, itemsMandatory = {false})
-	@GraphQLNonScalar(fieldName = "listVins", graphQLTypeSimpleName = "VinMappingResult", javaClass = VinMappingResult.class)
-	VinMappingResult listVins;
+	@JsonProperty("greeting")
+	@GraphQLScalar(fieldName = "greeting", graphQLTypeSimpleName = "String", javaClass = String.class)
+	String greeting;
 
 
-	@JsonProperty("vehicleDataForCustomerSpecifiedVehicle")
-	@GraphQLInputParameters(names = {"porscheCode", "languageTags", "marketplaceCode"}, types = {"String", "String", "String"}, mandatories = {true, true, false}, listDepths = {0, 1, 0}, itemsMandatory = {false, true, false})
-	@GraphQLNonScalar(fieldName = "vehicleDataForCustomerSpecifiedVehicle", graphQLTypeSimpleName = "CustomerSpecifiedVehicle", javaClass = CustomerSpecifiedVehicle.class)
-	CustomerSpecifiedVehicle vehicleDataForCustomerSpecifiedVehicle;
+	@JsonProperty("artifactRepositories")
+	@JsonDeserialize(using = CustomJacksonDeserializers.ListArtifactRepository.class)
+	@GraphQLNonScalar(fieldName = "artifactRepositories", graphQLTypeSimpleName = "ArtifactRepository", javaClass = ArtifactRepository.class)
+	List<ArtifactRepository> artifactRepositories;
 
 
-	@JsonProperty("vehicleData")
-	@GraphQLInputParameters(names = {"vin", "languageTags", "marketplaceCode"}, types = {"String", "String", "String"}, mandatories = {true, true, false}, listDepths = {0, 1, 0}, itemsMandatory = {false, true, false})
-	@GraphQLNonScalar(fieldName = "vehicleData", graphQLTypeSimpleName = "FactoryVehicle", javaClass = FactoryVehicle.class)
-	FactoryVehicle vehicleData;
+	@JsonProperty("artifactRepository")
+	@GraphQLInputParameters(names = {"id"}, types = {"ID"}, mandatories = {true}, listDepths = {0}, itemsMandatory = {false})
+	@GraphQLNonScalar(fieldName = "artifactRepository", graphQLTypeSimpleName = "ArtifactRepository", javaClass = ArtifactRepository.class)
+	ArtifactRepository artifactRepository;
 
 
-	@JsonProperty("vehicleState")
-	@GraphQLInputParameters(names = {"inventoryId", "languageTags"}, types = {"String", "String"}, mandatories = {true, true}, listDepths = {0, 1}, itemsMandatory = {false, true})
-	@GraphQLNonScalar(fieldName = "vehicleState", graphQLTypeSimpleName = "VehicleState", javaClass = VehicleState.class)
-	VehicleState vehicleState;
-
-
-	@JsonProperty("vehicleStates")
-	@JsonDeserialize(using = CustomJacksonDeserializers.ListVehicleStateSearchResult.class)
-	@GraphQLInputParameters(names = {"filter", "limit"}, types = {"VehicleStateFilterInput", "Int"}, mandatories = {true, true}, listDepths = {0, 0}, itemsMandatory = {false, false})
-	@GraphQLNonScalar(fieldName = "vehicleStates", graphQLTypeSimpleName = "VehicleStateSearchResult", javaClass = VehicleStateSearchResult.class)
-	List<VehicleStateSearchResult> vehicleStates;
-
-
-	@JsonProperty("vin")
-	@GraphQLInputParameters(names = {"inventoryId"}, types = {"String"}, mandatories = {true}, listDepths = {0}, itemsMandatory = {false})
-	@GraphQLScalar(fieldName = "vin", graphQLTypeSimpleName = "String", javaClass = String.class)
-	String vin;
+	@JsonProperty("tests")
+	@JsonDeserialize(using = CustomJacksonDeserializers.ListArtifactRepository.class)
+	@GraphQLInputParameters(names = {"ids"}, types = {"ID"}, mandatories = {true}, listDepths = {1}, itemsMandatory = {false})
+	@GraphQLNonScalar(fieldName = "tests", graphQLTypeSimpleName = "ArtifactRepository", javaClass = ArtifactRepository.class)
+	List<ArtifactRepository> tests;
 
 
 	@JsonProperty("__schema")
@@ -104,57 +91,39 @@ public class Query
 
 
 
-	public void setListVins(VinMappingResult listVins) {
-		this.listVins = listVins;
+	public void setGreeting(String greeting) {
+		this.greeting = greeting;
 	}
 
-	public VinMappingResult getListVins() {
-		return listVins;
-	}
-		
-
-	public void setVehicleDataForCustomerSpecifiedVehicle(CustomerSpecifiedVehicle vehicleDataForCustomerSpecifiedVehicle) {
-		this.vehicleDataForCustomerSpecifiedVehicle = vehicleDataForCustomerSpecifiedVehicle;
-	}
-
-	public CustomerSpecifiedVehicle getVehicleDataForCustomerSpecifiedVehicle() {
-		return vehicleDataForCustomerSpecifiedVehicle;
+	public String getGreeting() {
+		return greeting;
 	}
 		
 
-	public void setVehicleData(FactoryVehicle vehicleData) {
-		this.vehicleData = vehicleData;
+	public void setArtifactRepositories(List<ArtifactRepository> artifactRepositories) {
+		this.artifactRepositories = artifactRepositories;
 	}
 
-	public FactoryVehicle getVehicleData() {
-		return vehicleData;
-	}
-		
-
-	public void setVehicleState(VehicleState vehicleState) {
-		this.vehicleState = vehicleState;
-	}
-
-	public VehicleState getVehicleState() {
-		return vehicleState;
+	public List<ArtifactRepository> getArtifactRepositories() {
+		return artifactRepositories;
 	}
 		
 
-	public void setVehicleStates(List<VehicleStateSearchResult> vehicleStates) {
-		this.vehicleStates = vehicleStates;
+	public void setArtifactRepository(ArtifactRepository artifactRepository) {
+		this.artifactRepository = artifactRepository;
 	}
 
-	public List<VehicleStateSearchResult> getVehicleStates() {
-		return vehicleStates;
+	public ArtifactRepository getArtifactRepository() {
+		return artifactRepository;
 	}
 		
 
-	public void setVin(String vin) {
-		this.vin = vin;
+	public void setTests(List<ArtifactRepository> tests) {
+		this.tests = tests;
 	}
 
-	public String getVin() {
-		return vin;
+	public List<ArtifactRepository> getTests() {
+		return tests;
 	}
 		
 
@@ -212,17 +181,13 @@ public class Query
 
     public String toString() {
         return "Query {"
-				+ "listVins: " + listVins
+				+ "greeting: " + greeting
 				+ ", "
-				+ "vehicleDataForCustomerSpecifiedVehicle: " + vehicleDataForCustomerSpecifiedVehicle
+				+ "artifactRepositories: " + artifactRepositories
 				+ ", "
-				+ "vehicleData: " + vehicleData
+				+ "artifactRepository: " + artifactRepository
 				+ ", "
-				+ "vehicleState: " + vehicleState
-				+ ", "
-				+ "vehicleStates: " + vehicleStates
-				+ ", "
-				+ "vin: " + vin
+				+ "tests: " + tests
 				+ ", "
 				+ "__schema: " + __schema
 				+ ", "
@@ -241,37 +206,27 @@ public class Query
 	 * {@link #builder()}
 	 */
 	public static class Builder {
-		private VinMappingResult listVins;
-		private CustomerSpecifiedVehicle vehicleDataForCustomerSpecifiedVehicle;
-		private FactoryVehicle vehicleData;
-		private VehicleState vehicleState;
-		private List<VehicleStateSearchResult> vehicleStates;
-		private String vin;
+		private String greeting;
+		private List<ArtifactRepository> artifactRepositories;
+		private ArtifactRepository artifactRepository;
+		private List<ArtifactRepository> tests;
 		private __Schema __schema;
 		private __Type __type;
 
-		public Builder withListVins(VinMappingResult listVins) {
-			this.listVins = listVins;
+		public Builder withGreeting(String greeting) {
+			this.greeting = greeting;
 			return this;
 		}
-		public Builder withVehicleDataForCustomerSpecifiedVehicle(CustomerSpecifiedVehicle vehicleDataForCustomerSpecifiedVehicle) {
-			this.vehicleDataForCustomerSpecifiedVehicle = vehicleDataForCustomerSpecifiedVehicle;
+		public Builder withArtifactRepositories(List<ArtifactRepository> artifactRepositories) {
+			this.artifactRepositories = artifactRepositories;
 			return this;
 		}
-		public Builder withVehicleData(FactoryVehicle vehicleData) {
-			this.vehicleData = vehicleData;
+		public Builder withArtifactRepository(ArtifactRepository artifactRepository) {
+			this.artifactRepository = artifactRepository;
 			return this;
 		}
-		public Builder withVehicleState(VehicleState vehicleState) {
-			this.vehicleState = vehicleState;
-			return this;
-		}
-		public Builder withVehicleStates(List<VehicleStateSearchResult> vehicleStates) {
-			this.vehicleStates = vehicleStates;
-			return this;
-		}
-		public Builder withVin(String vin) {
-			this.vin = vin;
+		public Builder withTests(List<ArtifactRepository> tests) {
+			this.tests = tests;
 			return this;
 		}
 		public Builder with__schema(__Schema __schema) {
@@ -285,12 +240,10 @@ public class Query
 
 		public Query build() {
 			Query _object = new Query();
-			_object.setListVins(listVins);
-			_object.setVehicleDataForCustomerSpecifiedVehicle(vehicleDataForCustomerSpecifiedVehicle);
-			_object.setVehicleData(vehicleData);
-			_object.setVehicleState(vehicleState);
-			_object.setVehicleStates(vehicleStates);
-			_object.setVin(vin);
+			_object.setGreeting(greeting);
+			_object.setArtifactRepositories(artifactRepositories);
+			_object.setArtifactRepository(artifactRepository);
+			_object.setTests(tests);
 			_object.set__schema(__schema);
 			_object.set__type(__type);
 			_object.set__typename("Query");

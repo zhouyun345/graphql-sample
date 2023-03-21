@@ -19,241 +19,13 @@ import graphql.schema.GraphQLScalarType;
 @SuppressWarnings("unused")
 public class CustomJacksonDeserializers {
 	
-	public static class ListVehicleStateEquipment extends AbstractCustomJacksonDeserializer<List<cn.zy.client.VehicleStateEquipment>> {
+	public static class ListArtifactRepository extends AbstractCustomJacksonDeserializer<List<cn.zy.client.ArtifactRepository>> {
 		private static final long serialVersionUID = 1L;
-		public ListVehicleStateEquipment() {
+		public ListArtifactRepository() {
 			super(
 				null,
 true,
-				cn.zy.client.VehicleStateEquipment.class,
-				null
-			);
-		}
-	}
-
-	public static class ListEquipment extends AbstractCustomJacksonDeserializer<List<cn.zy.client.Equipment>> {
-		private static final long serialVersionUID = 1L;
-		public ListEquipment() {
-			super(
-				null,
-true,
-				cn.zy.client.Equipment.class,
-				null
-			);
-		}
-	}
-
-	public static class List__Field extends AbstractCustomJacksonDeserializer<List<cn.zy.client.__Field>> {
-		private static final long serialVersionUID = 1L;
-		public List__Field() {
-			super(
-				null,
-true,
-				cn.zy.client.__Field.class,
-				null
-			);
-		}
-	}
-
-	public static class Date extends AbstractCustomJacksonDeserializer<java.util.Date> {
-		private static final long serialVersionUID = 1L;
-		public Date() {
-			super(
-				null,
- false,
-				java.util.Date.class,
-  				GraphQLScalarTypeDate.Date
-			);
-		}
-	}
-
-	public static class ListVehicleStateEquipmentPackage extends AbstractCustomJacksonDeserializer<List<cn.zy.client.VehicleStateEquipmentPackage>> {
-		private static final long serialVersionUID = 1L;
-		public ListVehicleStateEquipmentPackage() {
-			super(
-				null,
-true,
-				cn.zy.client.VehicleStateEquipmentPackage.class,
-				null
-			);
-		}
-	}
-
-	public static class ListTranslation extends AbstractCustomJacksonDeserializer<List<cn.zy.client.Translation>> {
-		private static final long serialVersionUID = 1L;
-		public ListTranslation() {
-			super(
-				null,
-true,
-				cn.zy.client.Translation.class,
-				null
-			);
-		}
-	}
-
-	public static class ListEquipmentPackage extends AbstractCustomJacksonDeserializer<List<cn.zy.client.EquipmentPackage>> {
-		private static final long serialVersionUID = 1L;
-		public ListEquipmentPackage() {
-			super(
-				null,
-true,
-				cn.zy.client.EquipmentPackage.class,
-				null
-			);
-		}
-	}
-
-	public static class ListFactoryVehicleEquipment extends AbstractCustomJacksonDeserializer<List<cn.zy.client.FactoryVehicleEquipment>> {
-		private static final long serialVersionUID = 1L;
-		public ListFactoryVehicleEquipment() {
-			super(
-				null,
-true,
-				cn.zy.client.FactoryVehicleEquipment.class,
-				null
-			);
-		}
-	}
-
-	public static class ListTechnicalDataCategory extends AbstractCustomJacksonDeserializer<List<cn.zy.client.TechnicalDataCategory>> {
-		private static final long serialVersionUID = 1L;
-		public ListTechnicalDataCategory() {
-			super(
-				null,
-true,
-				cn.zy.client.TechnicalDataCategory.class,
-				null
-			);
-		}
-	}
-
-	public static class ListVehicleStateEquipmentCategoryDetails extends AbstractCustomJacksonDeserializer<List<cn.zy.client.VehicleStateEquipmentCategoryDetails>> {
-		private static final long serialVersionUID = 1L;
-		public ListVehicleStateEquipmentCategoryDetails() {
-			super(
-				null,
-true,
-				cn.zy.client.VehicleStateEquipmentCategoryDetails.class,
-				null
-			);
-		}
-	}
-
-	public static class ListIrisConfiguratorImage extends AbstractCustomJacksonDeserializer<List<cn.zy.client.IrisConfiguratorImage>> {
-		private static final long serialVersionUID = 1L;
-		public ListIrisConfiguratorImage() {
-			super(
-				null,
-true,
-				cn.zy.client.IrisConfiguratorImage.class,
-				null
-			);
-		}
-	}
-
-	public static class List__InputValue extends AbstractCustomJacksonDeserializer<List<cn.zy.client.__InputValue>> {
-		private static final long serialVersionUID = 1L;
-		public List__InputValue() {
-			super(
-				null,
-true,
-				cn.zy.client.__InputValue.class,
-				null
-			);
-		}
-	}
-
-	public static class ListVehicleStateSearchResult extends AbstractCustomJacksonDeserializer<List<cn.zy.client.VehicleStateSearchResult>> {
-		private static final long serialVersionUID = 1L;
-		public ListVehicleStateSearchResult() {
-			super(
-				null,
-true,
-				cn.zy.client.VehicleStateSearchResult.class,
-				null
-			);
-		}
-	}
-
-	public static class List__DirectiveLocation extends AbstractCustomJacksonDeserializer<List<cn.zy.client.__DirectiveLocation>> {
-		private static final long serialVersionUID = 1L;
-		public List__DirectiveLocation() {
-			super(
-				null,
-true,
-				cn.zy.client.__DirectiveLocation.class,
-				null
-			);
-		}
-	}
-
-	public static class ListConfiguratorImageVariant extends AbstractCustomJacksonDeserializer<List<cn.zy.client.ConfiguratorImageVariant>> {
-		private static final long serialVersionUID = 1L;
-		public ListConfiguratorImageVariant() {
-			super(
-				null,
-true,
-				cn.zy.client.ConfiguratorImageVariant.class,
-				null
-			);
-		}
-	}
-
-	public static class ListEquipmentCategoryDetails extends AbstractCustomJacksonDeserializer<List<cn.zy.client.EquipmentCategoryDetails>> {
-		private static final long serialVersionUID = 1L;
-		public ListEquipmentCategoryDetails() {
-			super(
-				null,
-true,
-				cn.zy.client.EquipmentCategoryDetails.class,
-				null
-			);
-		}
-	}
-
-	public static class ListStandardEquipmentTextEntry extends AbstractCustomJacksonDeserializer<List<cn.zy.client.StandardEquipmentTextEntry>> {
-		private static final long serialVersionUID = 1L;
-		public ListStandardEquipmentTextEntry() {
-			super(
-				null,
-true,
-				cn.zy.client.StandardEquipmentTextEntry.class,
-				null
-			);
-		}
-	}
-
-	public static class DateTime extends AbstractCustomJacksonDeserializer<java.time.LocalDateTime> {
-		private static final long serialVersionUID = 1L;
-		public DateTime() {
-			super(
-				null,
- false,
-				java.time.LocalDateTime.class,
-  				com.graphql_java_generator.customscalars.GraphQLScalarTypeDateTime
-			);
-		}
-	}
-
-	public static class ListFactoryVehicleEquipmentPackage extends AbstractCustomJacksonDeserializer<List<cn.zy.client.FactoryVehicleEquipmentPackage>> {
-		private static final long serialVersionUID = 1L;
-		public ListFactoryVehicleEquipmentPackage() {
-			super(
-				null,
-true,
-				cn.zy.client.FactoryVehicleEquipmentPackage.class,
-				null
-			);
-		}
-	}
-
-	public static class List__EnumValue extends AbstractCustomJacksonDeserializer<List<cn.zy.client.__EnumValue>> {
-		private static final long serialVersionUID = 1L;
-		public List__EnumValue() {
-			super(
-				null,
-true,
-				cn.zy.client.__EnumValue.class,
+				cn.zy.client.ArtifactRepository.class,
 				null
 			);
 		}
@@ -271,61 +43,13 @@ true,
 		}
 	}
 
-	public static class ListEquipmentTag extends AbstractCustomJacksonDeserializer<List<cn.zy.client.EquipmentTag>> {
+	public static class List__InputValue extends AbstractCustomJacksonDeserializer<List<cn.zy.client.__InputValue>> {
 		private static final long serialVersionUID = 1L;
-		public ListEquipmentTag() {
+		public List__InputValue() {
 			super(
 				null,
 true,
-				cn.zy.client.EquipmentTag.class,
-				null
-			);
-		}
-	}
-
-	public static class ListConfiguratorImageMetadata extends AbstractCustomJacksonDeserializer<List<cn.zy.client.ConfiguratorImageMetadata>> {
-		private static final long serialVersionUID = 1L;
-		public ListConfiguratorImageMetadata() {
-			super(
-				null,
-true,
-				cn.zy.client.ConfiguratorImageMetadata.class,
-				null
-			);
-		}
-	}
-
-	public static class ListTechnicalAttribute extends AbstractCustomJacksonDeserializer<List<cn.zy.client.TechnicalAttribute>> {
-		private static final long serialVersionUID = 1L;
-		public ListTechnicalAttribute() {
-			super(
-				null,
-true,
-				cn.zy.client.TechnicalAttribute.class,
-				null
-			);
-		}
-	}
-
-	public static class ListString extends AbstractCustomJacksonDeserializer<List<String>> {
-		private static final long serialVersionUID = 1L;
-		public ListString() {
-			super(
-				null,
-true,
-				String.class,
-				null
-			);
-		}
-	}
-
-	public static class ListFactoryVehicleEquipmentCategoryDetails extends AbstractCustomJacksonDeserializer<List<cn.zy.client.FactoryVehicleEquipmentCategoryDetails>> {
-		private static final long serialVersionUID = 1L;
-		public ListFactoryVehicleEquipmentCategoryDetails() {
-			super(
-				null,
-true,
-				cn.zy.client.FactoryVehicleEquipmentCategoryDetails.class,
+				cn.zy.client.__InputValue.class,
 				null
 			);
 		}
@@ -343,25 +67,37 @@ true,
 		}
 	}
 
-	public static class ListStandardEquipmentCategory extends AbstractCustomJacksonDeserializer<List<cn.zy.client.StandardEquipmentCategory>> {
+	public static class List__EnumValue extends AbstractCustomJacksonDeserializer<List<cn.zy.client.__EnumValue>> {
 		private static final long serialVersionUID = 1L;
-		public ListStandardEquipmentCategory() {
+		public List__EnumValue() {
 			super(
 				null,
 true,
-				cn.zy.client.StandardEquipmentCategory.class,
+				cn.zy.client.__EnumValue.class,
 				null
 			);
 		}
 	}
 
-	public static class ListEquipmentPackageContent extends AbstractCustomJacksonDeserializer<List<cn.zy.client.EquipmentPackageContent>> {
+	public static class List__DirectiveLocation extends AbstractCustomJacksonDeserializer<List<cn.zy.client.__DirectiveLocation>> {
 		private static final long serialVersionUID = 1L;
-		public ListEquipmentPackageContent() {
+		public List__DirectiveLocation() {
 			super(
 				null,
 true,
-				cn.zy.client.EquipmentPackageContent.class,
+				cn.zy.client.__DirectiveLocation.class,
+				null
+			);
+		}
+	}
+
+	public static class List__Field extends AbstractCustomJacksonDeserializer<List<cn.zy.client.__Field>> {
+		private static final long serialVersionUID = 1L;
+		public List__Field() {
+			super(
+				null,
+true,
+				cn.zy.client.__Field.class,
 				null
 			);
 		}

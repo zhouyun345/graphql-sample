@@ -73,18 +73,6 @@ public class DirectiveRegistryInitializer {
 		directive.getDirectiveLocations().add(DirectiveLocation.ENUM_VALUE);
 		directiveRegistry.registerDirective(directive);
 
-		/////////////////////////////////////////////////////////////////////////////////////////////////////
-		// Creating Directive specifiedBy
-		/////////////////////////////////////////////////////////////////////////////////////////////////////
-		directive = new Directive();
-		directive.setName("specifiedBy");
-		directive.setPackageName("cn.zy.client.util");
-		directive.getArguments().add(
-			InputParameter.newHardCodedParameter(
-					"", "url", null, "String", true, 0, false));
-		directive.getDirectiveLocations().add(DirectiveLocation.SCALAR);
-		directiveRegistry.registerDirective(directive);
-
 
 		DirectiveRegistryImpl.directiveRegistry = directiveRegistry;
 		return directiveRegistry;

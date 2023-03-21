@@ -356,7 +356,7 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * Map<String, Object> params = new HashMap<>();
 	 * params.put("skip", Boolean.FALSE);
 	 *
-	 * VinMappingResult c = myQyeryType.listVinsWithBindValues("{id name @skip(if: false) appearsIn friends {id name}}", filter, params);
+	 * String c = myQyeryType.greetingWithBindValues("{id name @skip(if: false) appearsIn friends {id name}}", params);
 	 * </PRE>
 	 * 
 	 * It offers a logging of the call (if in debug mode), or of the call and its parameters (if in trace mode).<BR/>
@@ -369,7 +369,6 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * 
 	 * @param queryResponseDef
 	 *            The response definition of the query, in the native GraphQL format (see here above)
-	 * @param filter Parameter for the listVins field of Query, as defined in the GraphQL schema
 	 * @param parameters
 	 *            The list of values, for the bind variables defined in the query. If there is no bind variable in the
 	 *            defined Query, this argument may be null or an empty {@link Map}
@@ -380,15 +379,14 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 *             When an error occurs during the request execution, typically a network error, an error from the
 	 *             GraphQL server or if the server response can't be parsed
 	 */
- @GraphQLNonScalar (fieldName = "listVins", graphQLTypeSimpleName = "VinMappingResult", javaClass = cn.zy.client.VinMappingResult.class)
-	public cn.zy.client.VinMappingResult listVinsWithBindValues(
+ @GraphQLScalar (fieldName = "greeting", graphQLTypeSimpleName = "String", javaClass = String.class)
+	public String greetingWithBindValues(
 			String queryResponseDef,
-			cn.zy.client.VinMappingFilterInput filter,
 			Map<String, Object> parameters)
 			throws GraphQLRequestExecutionException, GraphQLRequestPreparationException {
-		logger.debug("Executing query 'listVins': {} ", queryResponseDef);
-		ObjectResponse objectResponse = getListVinsResponseBuilder().withQueryResponseDef(queryResponseDef).build();
-		return listVins(objectResponse, filter, parameters);
+		logger.debug("Executing query 'greeting': {} ", queryResponseDef);
+		ObjectResponse objectResponse = getGreetingResponseBuilder().withQueryResponseDef(queryResponseDef).build();
+		return greeting(objectResponse, parameters);
 	}
 
 	/**
@@ -398,7 +396,7 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * For instance, if the query hero has one parameter (as defined in the GraphQL schema):
 	 * 
 	 * <PRE>
-	 * VinMappingResult c = myQyeryType.listVins("{id name @skip(if: false) appearsIn friends {id name}}", filter, "skip", Boolean.FALSE);
+	 * String c = myQyeryType.greeting("{id name @skip(if: false) appearsIn friends {id name}}", "skip", Boolean.FALSE);
 	 * </PRE>
 	 * 
 	 * It offers a logging of the call (if in debug mode), or of the call and its parameters (if in trace mode).<BR/>
@@ -411,7 +409,6 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * 
 	 * @param queryResponseDef
 	 *            The response definition of the query, in the native GraphQL format (see here above)
-	 * @param filter Parameter for the listVins field of Query, as defined in the GraphQL schema
 	 * @param parameters
 	 *            The list of values, for the bind variables defined in the query. If there is no bind variable in the
 	 *            defined Query, this argument may be null or an empty {@link Map}
@@ -422,15 +419,14 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 *             When an error occurs during the request execution, typically a network error, an error from the
 	 *             GraphQL server or if the server response can't be parsed
 	 */
- @GraphQLNonScalar (fieldName = "listVins", graphQLTypeSimpleName = "VinMappingResult", javaClass = cn.zy.client.VinMappingResult.class)
-	public cn.zy.client.VinMappingResult listVins(
+ @GraphQLScalar (fieldName = "greeting", graphQLTypeSimpleName = "String", javaClass = String.class)
+	public String greeting(
 			String queryResponseDef,
-			cn.zy.client.VinMappingFilterInput filter,
 			Object... paramsAndValues)
 			throws GraphQLRequestExecutionException, GraphQLRequestPreparationException {
-		logger.debug("Executing query 'listVins': {} ", queryResponseDef);
-		ObjectResponse objectResponse = getListVinsResponseBuilder().withQueryResponseDef(queryResponseDef).build();
-		return listVinsWithBindValues(objectResponse, filter, graphqlClientUtils.generatesBindVariableValuesMap(paramsAndValues));
+		logger.debug("Executing query 'greeting': {} ", queryResponseDef);
+		ObjectResponse objectResponse = getGreetingResponseBuilder().withQueryResponseDef(queryResponseDef).build();
+		return greetingWithBindValues(objectResponse, graphqlClientUtils.generatesBindVariableValuesMap(paramsAndValues));
 	}
 
 	/**
@@ -453,14 +449,13 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * Map<String, Object> params = new HashMap<>();
 	 * params.put("sinceParam", sinceValue);
 	 * // This will set the value sinceValue to the sinceParam field parameter
-	 * VinMappingResult ret = queryType.listVinsWithBindValues(response, filter, params);
+	 * String ret = queryType.greetingWithBindValues(response, params);
 	 * ...
 	 * }
 	 * </PRE>
 	 * 
 	 * @param objectResponse
 	 *            The definition of the response format, that describes what the GraphQL server is expected to return
-	 * @param filter Parameter for the listVins field of Query, as defined in the GraphQL schema
 	 * @param parameters
 	 *            The list of values, for the bind variables defined in the query. If there is no bind variable in the
 	 *            defined Query, this argument may be null or an empty {@link Map}
@@ -468,26 +463,24 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 *             When an error occurs during the request execution, typically a network error, an error from the
 	 *             GraphQL server or if the server response can't be parsed
 	 */
- @GraphQLNonScalar (fieldName = "listVins", graphQLTypeSimpleName = "VinMappingResult", javaClass = cn.zy.client.VinMappingResult.class)
-	public cn.zy.client.VinMappingResult listVinsWithBindValues(
+ @GraphQLScalar (fieldName = "greeting", graphQLTypeSimpleName = "String", javaClass = String.class)
+	public String greetingWithBindValues(
 			ObjectResponse objectResponse,
-			cn.zy.client.VinMappingFilterInput filter,
 			Map<String, Object> parameters)
 			throws GraphQLRequestExecutionException  {
 		if (logger.isTraceEnabled()) {
-			logger.trace("Executing query 'listVins' with parameters: {} ", filter);
+			logger.trace("Executing query 'greeting' with parameters: ");
 		} else if (logger.isDebugEnabled()) {
-			logger.debug("Executing query 'listVins'");
+			logger.debug("Executing query 'greeting'");
 		}
 	
 		// Given values for the BindVariables
 		parameters = (parameters != null) ? parameters : new HashMap<>();
-		parameters.put("queryListVinsFilter", filter);
 
 		cn.zy.client.Query ret 
 			= graphQLConfiguration.getQueryExecutor().execute(objectResponse, parameters, cn.zy.client.Query.class);
 		
-		return ret.getListVins();
+		return ret.getGreeting();
 	}
 
 	/**
@@ -508,14 +501,13 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * public void doTheJob() {
 	 * ..
 	 * // This will set the value sinceValue to the sinceParam field parameter
-	 * VinMappingResult ret = queryType.listVins(response, filter, "sinceParam", sinceValue);
+	 * String ret = queryType.greeting(response, "sinceParam", sinceValue);
 	 * ...
 	 * }
 	 * </PRE>
 	 * 
 	 * @param objectResponse
 	 *            The definition of the response format, that describes what the GraphQL server is expected to return
-	 * @param filter Parameter for the listVins field of Query, as defined in the GraphQL schema
 	 * @param paramsAndValues
 	 *            This parameter contains all the name and values for the Bind Variables defined in the objectResponse
 	 *            parameter, that must be sent to the server. Optional parameter may not have a value. They will be
@@ -526,15 +518,14 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 *             When an error occurs during the request execution, typically a network error, an error from the
 	 *             GraphQL server or if the server response can't be parsed
 	 */
- @GraphQLNonScalar (fieldName = "listVins", graphQLTypeSimpleName = "VinMappingResult", javaClass = cn.zy.client.VinMappingResult.class)
-	public cn.zy.client.VinMappingResult listVins(
+ @GraphQLScalar (fieldName = "greeting", graphQLTypeSimpleName = "String", javaClass = String.class)
+	public String greeting(
 			ObjectResponse objectResponse,
-			cn.zy.client.VinMappingFilterInput filter,
 			Object... paramsAndValues)
 			throws GraphQLRequestExecutionException  {
 		if (logger.isTraceEnabled()) {
 			StringBuffer sb = new StringBuffer();
-			sb.append("Executing query 'listVins' with bind variables: ");
+			sb.append("Executing query 'greeting' with bind variables: ");
 			boolean addComma = false;
 			for (Object o : paramsAndValues) {
 				if (o != null) {
@@ -546,33 +537,31 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 			}
 			logger.trace(sb.toString());
 		} else if (logger.isDebugEnabled()) {
-			logger.debug("Executing query 'listVins' (with bind variables)");
+			logger.debug("Executing query 'greeting' (with bind variables)");
 		}
 
 		Map<String, Object> parameters = graphqlClientUtils.generatesBindVariableValuesMap(paramsAndValues);
-		parameters.put("queryListVinsFilter", filter);
 		
 		cn.zy.client.Query ret 
 			= graphQLConfiguration.getQueryExecutor().execute(objectResponse, parameters, cn.zy.client.Query.class);
 
-		return ret.getListVins();
+		return ret.getGreeting();
 	}
 
 	/**
-	 * Get the {@link com.graphql_java_generator.client.request.Builder} for the VinMappingResult, as expected by the listVins query.
+	 * Get the {@link com.graphql_java_generator.client.request.Builder} for the String, as expected by the greeting query.
 	 * 
 	 * @return
 	 * @throws GraphQLRequestPreparationException
 	 */
-	public com.graphql_java_generator.client.request.Builder getListVinsResponseBuilder() throws GraphQLRequestPreparationException {
-		return new com.graphql_java_generator.client.request.Builder(GraphQLRequest.class, "listVins", RequestType.query
-			, InputParameter.newBindParameter("", "filter","queryListVinsFilter", InputParameterType.MANDATORY, "VinMappingFilterInput", true, 0, false)
+	public com.graphql_java_generator.client.request.Builder getGreetingResponseBuilder() throws GraphQLRequestPreparationException {
+		return new com.graphql_java_generator.client.request.Builder(GraphQLRequest.class, "greeting", RequestType.query
 			);
 	}
 
 
 	/**
-	 * Get the {@link GraphQLRequest} for the listVins executor, created with the given Partial request.
+	 * Get the {@link GraphQLRequest} for the greeting executor, created with the given Partial request.
 	 * 
 	 * @param partialRequest
 	 * 				The Partial GraphQLRequest, as explained in the 
@@ -580,9 +569,8 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * @return
 	 * @throws GraphQLRequestPreparationException
 	 */
-	public GraphQLRequest getListVinsGraphQLRequest(String partialRequest) throws GraphQLRequestPreparationException {
-		return new GraphQLRequest(partialRequest, RequestType.query, "listVins"
-  		, InputParameter.newBindParameter("", "filter","queryListVinsFilter", InputParameterType.MANDATORY, "VinMappingFilterInput", true, 0, false)
+	public GraphQLRequest getGreetingGraphQLRequest(String partialRequest) throws GraphQLRequestPreparationException {
+		return new GraphQLRequest(partialRequest, RequestType.query, "greeting"
 		);
 	}
 	
@@ -596,7 +584,7 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * Map<String, Object> params = new HashMap<>();
 	 * params.put("skip", Boolean.FALSE);
 	 *
-	 * CustomerSpecifiedVehicle c = myQyeryType.vehicleDataForCustomerSpecifiedVehicleWithBindValues("{id name @skip(if: false) appearsIn friends {id name}}", porscheCode, languageTags, marketplaceCode, params);
+	 * List<ArtifactRepository> c = myQyeryType.artifactRepositoriesWithBindValues("{id name @skip(if: false) appearsIn friends {id name}}", params);
 	 * </PRE>
 	 * 
 	 * It offers a logging of the call (if in debug mode), or of the call and its parameters (if in trace mode).<BR/>
@@ -609,9 +597,6 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * 
 	 * @param queryResponseDef
 	 *            The response definition of the query, in the native GraphQL format (see here above)
-	 * @param porscheCode Parameter for the vehicleDataForCustomerSpecifiedVehicle field of Query, as defined in the GraphQL schema
-	 * @param languageTags Parameter for the vehicleDataForCustomerSpecifiedVehicle field of Query, as defined in the GraphQL schema
-	 * @param marketplaceCode Parameter for the vehicleDataForCustomerSpecifiedVehicle field of Query, as defined in the GraphQL schema
 	 * @param parameters
 	 *            The list of values, for the bind variables defined in the query. If there is no bind variable in the
 	 *            defined Query, this argument may be null or an empty {@link Map}
@@ -622,17 +607,14 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 *             When an error occurs during the request execution, typically a network error, an error from the
 	 *             GraphQL server or if the server response can't be parsed
 	 */
- @GraphQLNonScalar (fieldName = "vehicleDataForCustomerSpecifiedVehicle", graphQLTypeSimpleName = "CustomerSpecifiedVehicle", javaClass = cn.zy.client.CustomerSpecifiedVehicle.class)
-	public cn.zy.client.CustomerSpecifiedVehicle vehicleDataForCustomerSpecifiedVehicleWithBindValues(
+ @GraphQLNonScalar (fieldName = "artifactRepositories", graphQLTypeSimpleName = "ArtifactRepository", javaClass = cn.zy.client.ArtifactRepository.class)
+	public List<cn.zy.client.ArtifactRepository> artifactRepositoriesWithBindValues(
 			String queryResponseDef,
-			String porscheCode,
-			List<String> languageTags,
-			String marketplaceCode,
 			Map<String, Object> parameters)
 			throws GraphQLRequestExecutionException, GraphQLRequestPreparationException {
-		logger.debug("Executing query 'vehicleDataForCustomerSpecifiedVehicle': {} ", queryResponseDef);
-		ObjectResponse objectResponse = getVehicleDataForCustomerSpecifiedVehicleResponseBuilder().withQueryResponseDef(queryResponseDef).build();
-		return vehicleDataForCustomerSpecifiedVehicle(objectResponse, porscheCode, languageTags, marketplaceCode, parameters);
+		logger.debug("Executing query 'artifactRepositories': {} ", queryResponseDef);
+		ObjectResponse objectResponse = getArtifactRepositoriesResponseBuilder().withQueryResponseDef(queryResponseDef).build();
+		return artifactRepositories(objectResponse, parameters);
 	}
 
 	/**
@@ -642,7 +624,7 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * For instance, if the query hero has one parameter (as defined in the GraphQL schema):
 	 * 
 	 * <PRE>
-	 * CustomerSpecifiedVehicle c = myQyeryType.vehicleDataForCustomerSpecifiedVehicle("{id name @skip(if: false) appearsIn friends {id name}}", porscheCode, languageTags, marketplaceCode, "skip", Boolean.FALSE);
+	 * List<ArtifactRepository> c = myQyeryType.artifactRepositories("{id name @skip(if: false) appearsIn friends {id name}}", "skip", Boolean.FALSE);
 	 * </PRE>
 	 * 
 	 * It offers a logging of the call (if in debug mode), or of the call and its parameters (if in trace mode).<BR/>
@@ -655,9 +637,6 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * 
 	 * @param queryResponseDef
 	 *            The response definition of the query, in the native GraphQL format (see here above)
-	 * @param porscheCode Parameter for the vehicleDataForCustomerSpecifiedVehicle field of Query, as defined in the GraphQL schema
-	 * @param languageTags Parameter for the vehicleDataForCustomerSpecifiedVehicle field of Query, as defined in the GraphQL schema
-	 * @param marketplaceCode Parameter for the vehicleDataForCustomerSpecifiedVehicle field of Query, as defined in the GraphQL schema
 	 * @param parameters
 	 *            The list of values, for the bind variables defined in the query. If there is no bind variable in the
 	 *            defined Query, this argument may be null or an empty {@link Map}
@@ -668,17 +647,14 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 *             When an error occurs during the request execution, typically a network error, an error from the
 	 *             GraphQL server or if the server response can't be parsed
 	 */
- @GraphQLNonScalar (fieldName = "vehicleDataForCustomerSpecifiedVehicle", graphQLTypeSimpleName = "CustomerSpecifiedVehicle", javaClass = cn.zy.client.CustomerSpecifiedVehicle.class)
-	public cn.zy.client.CustomerSpecifiedVehicle vehicleDataForCustomerSpecifiedVehicle(
+ @GraphQLNonScalar (fieldName = "artifactRepositories", graphQLTypeSimpleName = "ArtifactRepository", javaClass = cn.zy.client.ArtifactRepository.class)
+	public List<cn.zy.client.ArtifactRepository> artifactRepositories(
 			String queryResponseDef,
-			String porscheCode,
-			List<String> languageTags,
-			String marketplaceCode,
 			Object... paramsAndValues)
 			throws GraphQLRequestExecutionException, GraphQLRequestPreparationException {
-		logger.debug("Executing query 'vehicleDataForCustomerSpecifiedVehicle': {} ", queryResponseDef);
-		ObjectResponse objectResponse = getVehicleDataForCustomerSpecifiedVehicleResponseBuilder().withQueryResponseDef(queryResponseDef).build();
-		return vehicleDataForCustomerSpecifiedVehicleWithBindValues(objectResponse, porscheCode, languageTags, marketplaceCode, graphqlClientUtils.generatesBindVariableValuesMap(paramsAndValues));
+		logger.debug("Executing query 'artifactRepositories': {} ", queryResponseDef);
+		ObjectResponse objectResponse = getArtifactRepositoriesResponseBuilder().withQueryResponseDef(queryResponseDef).build();
+		return artifactRepositoriesWithBindValues(objectResponse, graphqlClientUtils.generatesBindVariableValuesMap(paramsAndValues));
 	}
 
 	/**
@@ -701,16 +677,13 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * Map<String, Object> params = new HashMap<>();
 	 * params.put("sinceParam", sinceValue);
 	 * // This will set the value sinceValue to the sinceParam field parameter
-	 * CustomerSpecifiedVehicle ret = queryType.vehicleDataForCustomerSpecifiedVehicleWithBindValues(response, porscheCode, languageTags, marketplaceCode, params);
+	 * List<ArtifactRepository> ret = queryType.artifactRepositoriesWithBindValues(response, params);
 	 * ...
 	 * }
 	 * </PRE>
 	 * 
 	 * @param objectResponse
 	 *            The definition of the response format, that describes what the GraphQL server is expected to return
-	 * @param porscheCode Parameter for the vehicleDataForCustomerSpecifiedVehicle field of Query, as defined in the GraphQL schema
-	 * @param languageTags Parameter for the vehicleDataForCustomerSpecifiedVehicle field of Query, as defined in the GraphQL schema
-	 * @param marketplaceCode Parameter for the vehicleDataForCustomerSpecifiedVehicle field of Query, as defined in the GraphQL schema
 	 * @param parameters
 	 *            The list of values, for the bind variables defined in the query. If there is no bind variable in the
 	 *            defined Query, this argument may be null or an empty {@link Map}
@@ -718,30 +691,24 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 *             When an error occurs during the request execution, typically a network error, an error from the
 	 *             GraphQL server or if the server response can't be parsed
 	 */
- @GraphQLNonScalar (fieldName = "vehicleDataForCustomerSpecifiedVehicle", graphQLTypeSimpleName = "CustomerSpecifiedVehicle", javaClass = cn.zy.client.CustomerSpecifiedVehicle.class)
-	public cn.zy.client.CustomerSpecifiedVehicle vehicleDataForCustomerSpecifiedVehicleWithBindValues(
+ @GraphQLNonScalar (fieldName = "artifactRepositories", graphQLTypeSimpleName = "ArtifactRepository", javaClass = cn.zy.client.ArtifactRepository.class)
+	public List<cn.zy.client.ArtifactRepository> artifactRepositoriesWithBindValues(
 			ObjectResponse objectResponse,
-			String porscheCode,
-			List<String> languageTags,
-			String marketplaceCode,
 			Map<String, Object> parameters)
 			throws GraphQLRequestExecutionException  {
 		if (logger.isTraceEnabled()) {
-			logger.trace("Executing query 'vehicleDataForCustomerSpecifiedVehicle' with parameters: {}, {}, {} ", porscheCode, languageTags, marketplaceCode);
+			logger.trace("Executing query 'artifactRepositories' with parameters: ");
 		} else if (logger.isDebugEnabled()) {
-			logger.debug("Executing query 'vehicleDataForCustomerSpecifiedVehicle'");
+			logger.debug("Executing query 'artifactRepositories'");
 		}
 	
 		// Given values for the BindVariables
 		parameters = (parameters != null) ? parameters : new HashMap<>();
-		parameters.put("queryVehicleDataForCustomerSpecifiedVehiclePorscheCode", porscheCode);
-		parameters.put("queryVehicleDataForCustomerSpecifiedVehicleLanguageTags", languageTags);
-		parameters.put("queryVehicleDataForCustomerSpecifiedVehicleMarketplaceCode", marketplaceCode);
 
 		cn.zy.client.Query ret 
 			= graphQLConfiguration.getQueryExecutor().execute(objectResponse, parameters, cn.zy.client.Query.class);
 		
-		return ret.getVehicleDataForCustomerSpecifiedVehicle();
+		return ret.getArtifactRepositories();
 	}
 
 	/**
@@ -762,16 +729,13 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * public void doTheJob() {
 	 * ..
 	 * // This will set the value sinceValue to the sinceParam field parameter
-	 * CustomerSpecifiedVehicle ret = queryType.vehicleDataForCustomerSpecifiedVehicle(response, porscheCode, languageTags, marketplaceCode, "sinceParam", sinceValue);
+	 * List<ArtifactRepository> ret = queryType.artifactRepositories(response, "sinceParam", sinceValue);
 	 * ...
 	 * }
 	 * </PRE>
 	 * 
 	 * @param objectResponse
 	 *            The definition of the response format, that describes what the GraphQL server is expected to return
-	 * @param porscheCode Parameter for the vehicleDataForCustomerSpecifiedVehicle field of Query, as defined in the GraphQL schema
-	 * @param languageTags Parameter for the vehicleDataForCustomerSpecifiedVehicle field of Query, as defined in the GraphQL schema
-	 * @param marketplaceCode Parameter for the vehicleDataForCustomerSpecifiedVehicle field of Query, as defined in the GraphQL schema
 	 * @param paramsAndValues
 	 *            This parameter contains all the name and values for the Bind Variables defined in the objectResponse
 	 *            parameter, that must be sent to the server. Optional parameter may not have a value. They will be
@@ -782,17 +746,14 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 *             When an error occurs during the request execution, typically a network error, an error from the
 	 *             GraphQL server or if the server response can't be parsed
 	 */
- @GraphQLNonScalar (fieldName = "vehicleDataForCustomerSpecifiedVehicle", graphQLTypeSimpleName = "CustomerSpecifiedVehicle", javaClass = cn.zy.client.CustomerSpecifiedVehicle.class)
-	public cn.zy.client.CustomerSpecifiedVehicle vehicleDataForCustomerSpecifiedVehicle(
+ @GraphQLNonScalar (fieldName = "artifactRepositories", graphQLTypeSimpleName = "ArtifactRepository", javaClass = cn.zy.client.ArtifactRepository.class)
+	public List<cn.zy.client.ArtifactRepository> artifactRepositories(
 			ObjectResponse objectResponse,
-			String porscheCode,
-			List<String> languageTags,
-			String marketplaceCode,
 			Object... paramsAndValues)
 			throws GraphQLRequestExecutionException  {
 		if (logger.isTraceEnabled()) {
 			StringBuffer sb = new StringBuffer();
-			sb.append("Executing query 'vehicleDataForCustomerSpecifiedVehicle' with bind variables: ");
+			sb.append("Executing query 'artifactRepositories' with bind variables: ");
 			boolean addComma = false;
 			for (Object o : paramsAndValues) {
 				if (o != null) {
@@ -804,37 +765,31 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 			}
 			logger.trace(sb.toString());
 		} else if (logger.isDebugEnabled()) {
-			logger.debug("Executing query 'vehicleDataForCustomerSpecifiedVehicle' (with bind variables)");
+			logger.debug("Executing query 'artifactRepositories' (with bind variables)");
 		}
 
 		Map<String, Object> parameters = graphqlClientUtils.generatesBindVariableValuesMap(paramsAndValues);
-		parameters.put("queryVehicleDataForCustomerSpecifiedVehiclePorscheCode", porscheCode);
-		parameters.put("queryVehicleDataForCustomerSpecifiedVehicleLanguageTags", languageTags);
-		parameters.put("queryVehicleDataForCustomerSpecifiedVehicleMarketplaceCode", marketplaceCode);
 		
 		cn.zy.client.Query ret 
 			= graphQLConfiguration.getQueryExecutor().execute(objectResponse, parameters, cn.zy.client.Query.class);
 
-		return ret.getVehicleDataForCustomerSpecifiedVehicle();
+		return ret.getArtifactRepositories();
 	}
 
 	/**
-	 * Get the {@link com.graphql_java_generator.client.request.Builder} for the CustomerSpecifiedVehicle, as expected by the vehicleDataForCustomerSpecifiedVehicle query.
+	 * Get the {@link com.graphql_java_generator.client.request.Builder} for the ArtifactRepository, as expected by the artifactRepositories query.
 	 * 
 	 * @return
 	 * @throws GraphQLRequestPreparationException
 	 */
-	public com.graphql_java_generator.client.request.Builder getVehicleDataForCustomerSpecifiedVehicleResponseBuilder() throws GraphQLRequestPreparationException {
-		return new com.graphql_java_generator.client.request.Builder(GraphQLRequest.class, "vehicleDataForCustomerSpecifiedVehicle", RequestType.query
-			, InputParameter.newBindParameter("", "porscheCode","queryVehicleDataForCustomerSpecifiedVehiclePorscheCode", InputParameterType.MANDATORY, "String", true, 0, false)
-			, InputParameter.newBindParameter("", "languageTags","queryVehicleDataForCustomerSpecifiedVehicleLanguageTags", InputParameterType.MANDATORY, "String", true, 1, true)
-			, InputParameter.newBindParameter("", "marketplaceCode","queryVehicleDataForCustomerSpecifiedVehicleMarketplaceCode", InputParameterType.OPTIONAL, "String", false, 0, false)
+	public com.graphql_java_generator.client.request.Builder getArtifactRepositoriesResponseBuilder() throws GraphQLRequestPreparationException {
+		return new com.graphql_java_generator.client.request.Builder(GraphQLRequest.class, "artifactRepositories", RequestType.query
 			);
 	}
 
 
 	/**
-	 * Get the {@link GraphQLRequest} for the vehicleDataForCustomerSpecifiedVehicle executor, created with the given Partial request.
+	 * Get the {@link GraphQLRequest} for the artifactRepositories executor, created with the given Partial request.
 	 * 
 	 * @param partialRequest
 	 * 				The Partial GraphQLRequest, as explained in the 
@@ -842,11 +797,8 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * @return
 	 * @throws GraphQLRequestPreparationException
 	 */
-	public GraphQLRequest getVehicleDataForCustomerSpecifiedVehicleGraphQLRequest(String partialRequest) throws GraphQLRequestPreparationException {
-		return new GraphQLRequest(partialRequest, RequestType.query, "vehicleDataForCustomerSpecifiedVehicle"
-  		, InputParameter.newBindParameter("", "porscheCode","queryVehicleDataForCustomerSpecifiedVehiclePorscheCode", InputParameterType.MANDATORY, "String", true, 0, false)
-  		, InputParameter.newBindParameter("", "languageTags","queryVehicleDataForCustomerSpecifiedVehicleLanguageTags", InputParameterType.MANDATORY, "String", true, 1, true)
-  		, InputParameter.newBindParameter("", "marketplaceCode","queryVehicleDataForCustomerSpecifiedVehicleMarketplaceCode", InputParameterType.OPTIONAL, "String", false, 0, false)
+	public GraphQLRequest getArtifactRepositoriesGraphQLRequest(String partialRequest) throws GraphQLRequestPreparationException {
+		return new GraphQLRequest(partialRequest, RequestType.query, "artifactRepositories"
 		);
 	}
 	
@@ -860,7 +812,7 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * Map<String, Object> params = new HashMap<>();
 	 * params.put("skip", Boolean.FALSE);
 	 *
-	 * FactoryVehicle c = myQyeryType.vehicleDataWithBindValues("{id name @skip(if: false) appearsIn friends {id name}}", vin, languageTags, marketplaceCode, params);
+	 * ArtifactRepository c = myQyeryType.artifactRepositoryWithBindValues("{id name @skip(if: false) appearsIn friends {id name}}", id, params);
 	 * </PRE>
 	 * 
 	 * It offers a logging of the call (if in debug mode), or of the call and its parameters (if in trace mode).<BR/>
@@ -873,9 +825,7 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * 
 	 * @param queryResponseDef
 	 *            The response definition of the query, in the native GraphQL format (see here above)
-	 * @param vin Parameter for the vehicleData field of Query, as defined in the GraphQL schema
-	 * @param languageTags Parameter for the vehicleData field of Query, as defined in the GraphQL schema
-	 * @param marketplaceCode Parameter for the vehicleData field of Query, as defined in the GraphQL schema
+	 * @param id Parameter for the artifactRepository field of Query, as defined in the GraphQL schema
 	 * @param parameters
 	 *            The list of values, for the bind variables defined in the query. If there is no bind variable in the
 	 *            defined Query, this argument may be null or an empty {@link Map}
@@ -886,17 +836,15 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 *             When an error occurs during the request execution, typically a network error, an error from the
 	 *             GraphQL server or if the server response can't be parsed
 	 */
- @GraphQLNonScalar (fieldName = "vehicleData", graphQLTypeSimpleName = "FactoryVehicle", javaClass = cn.zy.client.FactoryVehicle.class)
-	public cn.zy.client.FactoryVehicle vehicleDataWithBindValues(
+ @GraphQLNonScalar (fieldName = "artifactRepository", graphQLTypeSimpleName = "ArtifactRepository", javaClass = cn.zy.client.ArtifactRepository.class)
+	public cn.zy.client.ArtifactRepository artifactRepositoryWithBindValues(
 			String queryResponseDef,
-			String vin,
-			List<String> languageTags,
-			String marketplaceCode,
+			String id,
 			Map<String, Object> parameters)
 			throws GraphQLRequestExecutionException, GraphQLRequestPreparationException {
-		logger.debug("Executing query 'vehicleData': {} ", queryResponseDef);
-		ObjectResponse objectResponse = getVehicleDataResponseBuilder().withQueryResponseDef(queryResponseDef).build();
-		return vehicleData(objectResponse, vin, languageTags, marketplaceCode, parameters);
+		logger.debug("Executing query 'artifactRepository': {} ", queryResponseDef);
+		ObjectResponse objectResponse = getArtifactRepositoryResponseBuilder().withQueryResponseDef(queryResponseDef).build();
+		return artifactRepository(objectResponse, id, parameters);
 	}
 
 	/**
@@ -906,7 +854,7 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * For instance, if the query hero has one parameter (as defined in the GraphQL schema):
 	 * 
 	 * <PRE>
-	 * FactoryVehicle c = myQyeryType.vehicleData("{id name @skip(if: false) appearsIn friends {id name}}", vin, languageTags, marketplaceCode, "skip", Boolean.FALSE);
+	 * ArtifactRepository c = myQyeryType.artifactRepository("{id name @skip(if: false) appearsIn friends {id name}}", id, "skip", Boolean.FALSE);
 	 * </PRE>
 	 * 
 	 * It offers a logging of the call (if in debug mode), or of the call and its parameters (if in trace mode).<BR/>
@@ -919,9 +867,7 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * 
 	 * @param queryResponseDef
 	 *            The response definition of the query, in the native GraphQL format (see here above)
-	 * @param vin Parameter for the vehicleData field of Query, as defined in the GraphQL schema
-	 * @param languageTags Parameter for the vehicleData field of Query, as defined in the GraphQL schema
-	 * @param marketplaceCode Parameter for the vehicleData field of Query, as defined in the GraphQL schema
+	 * @param id Parameter for the artifactRepository field of Query, as defined in the GraphQL schema
 	 * @param parameters
 	 *            The list of values, for the bind variables defined in the query. If there is no bind variable in the
 	 *            defined Query, this argument may be null or an empty {@link Map}
@@ -932,17 +878,15 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 *             When an error occurs during the request execution, typically a network error, an error from the
 	 *             GraphQL server or if the server response can't be parsed
 	 */
- @GraphQLNonScalar (fieldName = "vehicleData", graphQLTypeSimpleName = "FactoryVehicle", javaClass = cn.zy.client.FactoryVehicle.class)
-	public cn.zy.client.FactoryVehicle vehicleData(
+ @GraphQLNonScalar (fieldName = "artifactRepository", graphQLTypeSimpleName = "ArtifactRepository", javaClass = cn.zy.client.ArtifactRepository.class)
+	public cn.zy.client.ArtifactRepository artifactRepository(
 			String queryResponseDef,
-			String vin,
-			List<String> languageTags,
-			String marketplaceCode,
+			String id,
 			Object... paramsAndValues)
 			throws GraphQLRequestExecutionException, GraphQLRequestPreparationException {
-		logger.debug("Executing query 'vehicleData': {} ", queryResponseDef);
-		ObjectResponse objectResponse = getVehicleDataResponseBuilder().withQueryResponseDef(queryResponseDef).build();
-		return vehicleDataWithBindValues(objectResponse, vin, languageTags, marketplaceCode, graphqlClientUtils.generatesBindVariableValuesMap(paramsAndValues));
+		logger.debug("Executing query 'artifactRepository': {} ", queryResponseDef);
+		ObjectResponse objectResponse = getArtifactRepositoryResponseBuilder().withQueryResponseDef(queryResponseDef).build();
+		return artifactRepositoryWithBindValues(objectResponse, id, graphqlClientUtils.generatesBindVariableValuesMap(paramsAndValues));
 	}
 
 	/**
@@ -965,16 +909,14 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * Map<String, Object> params = new HashMap<>();
 	 * params.put("sinceParam", sinceValue);
 	 * // This will set the value sinceValue to the sinceParam field parameter
-	 * FactoryVehicle ret = queryType.vehicleDataWithBindValues(response, vin, languageTags, marketplaceCode, params);
+	 * ArtifactRepository ret = queryType.artifactRepositoryWithBindValues(response, id, params);
 	 * ...
 	 * }
 	 * </PRE>
 	 * 
 	 * @param objectResponse
 	 *            The definition of the response format, that describes what the GraphQL server is expected to return
-	 * @param vin Parameter for the vehicleData field of Query, as defined in the GraphQL schema
-	 * @param languageTags Parameter for the vehicleData field of Query, as defined in the GraphQL schema
-	 * @param marketplaceCode Parameter for the vehicleData field of Query, as defined in the GraphQL schema
+	 * @param id Parameter for the artifactRepository field of Query, as defined in the GraphQL schema
 	 * @param parameters
 	 *            The list of values, for the bind variables defined in the query. If there is no bind variable in the
 	 *            defined Query, this argument may be null or an empty {@link Map}
@@ -982,30 +924,26 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 *             When an error occurs during the request execution, typically a network error, an error from the
 	 *             GraphQL server or if the server response can't be parsed
 	 */
- @GraphQLNonScalar (fieldName = "vehicleData", graphQLTypeSimpleName = "FactoryVehicle", javaClass = cn.zy.client.FactoryVehicle.class)
-	public cn.zy.client.FactoryVehicle vehicleDataWithBindValues(
+ @GraphQLNonScalar (fieldName = "artifactRepository", graphQLTypeSimpleName = "ArtifactRepository", javaClass = cn.zy.client.ArtifactRepository.class)
+	public cn.zy.client.ArtifactRepository artifactRepositoryWithBindValues(
 			ObjectResponse objectResponse,
-			String vin,
-			List<String> languageTags,
-			String marketplaceCode,
+			String id,
 			Map<String, Object> parameters)
 			throws GraphQLRequestExecutionException  {
 		if (logger.isTraceEnabled()) {
-			logger.trace("Executing query 'vehicleData' with parameters: {}, {}, {} ", vin, languageTags, marketplaceCode);
+			logger.trace("Executing query 'artifactRepository' with parameters: {} ", id);
 		} else if (logger.isDebugEnabled()) {
-			logger.debug("Executing query 'vehicleData'");
+			logger.debug("Executing query 'artifactRepository'");
 		}
 	
 		// Given values for the BindVariables
 		parameters = (parameters != null) ? parameters : new HashMap<>();
-		parameters.put("queryVehicleDataVin", vin);
-		parameters.put("queryVehicleDataLanguageTags", languageTags);
-		parameters.put("queryVehicleDataMarketplaceCode", marketplaceCode);
+		parameters.put("queryArtifactRepositoryId", id);
 
 		cn.zy.client.Query ret 
 			= graphQLConfiguration.getQueryExecutor().execute(objectResponse, parameters, cn.zy.client.Query.class);
 		
-		return ret.getVehicleData();
+		return ret.getArtifactRepository();
 	}
 
 	/**
@@ -1026,16 +964,14 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * public void doTheJob() {
 	 * ..
 	 * // This will set the value sinceValue to the sinceParam field parameter
-	 * FactoryVehicle ret = queryType.vehicleData(response, vin, languageTags, marketplaceCode, "sinceParam", sinceValue);
+	 * ArtifactRepository ret = queryType.artifactRepository(response, id, "sinceParam", sinceValue);
 	 * ...
 	 * }
 	 * </PRE>
 	 * 
 	 * @param objectResponse
 	 *            The definition of the response format, that describes what the GraphQL server is expected to return
-	 * @param vin Parameter for the vehicleData field of Query, as defined in the GraphQL schema
-	 * @param languageTags Parameter for the vehicleData field of Query, as defined in the GraphQL schema
-	 * @param marketplaceCode Parameter for the vehicleData field of Query, as defined in the GraphQL schema
+	 * @param id Parameter for the artifactRepository field of Query, as defined in the GraphQL schema
 	 * @param paramsAndValues
 	 *            This parameter contains all the name and values for the Bind Variables defined in the objectResponse
 	 *            parameter, that must be sent to the server. Optional parameter may not have a value. They will be
@@ -1046,17 +982,15 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 *             When an error occurs during the request execution, typically a network error, an error from the
 	 *             GraphQL server or if the server response can't be parsed
 	 */
- @GraphQLNonScalar (fieldName = "vehicleData", graphQLTypeSimpleName = "FactoryVehicle", javaClass = cn.zy.client.FactoryVehicle.class)
-	public cn.zy.client.FactoryVehicle vehicleData(
+ @GraphQLNonScalar (fieldName = "artifactRepository", graphQLTypeSimpleName = "ArtifactRepository", javaClass = cn.zy.client.ArtifactRepository.class)
+	public cn.zy.client.ArtifactRepository artifactRepository(
 			ObjectResponse objectResponse,
-			String vin,
-			List<String> languageTags,
-			String marketplaceCode,
+			String id,
 			Object... paramsAndValues)
 			throws GraphQLRequestExecutionException  {
 		if (logger.isTraceEnabled()) {
 			StringBuffer sb = new StringBuffer();
-			sb.append("Executing query 'vehicleData' with bind variables: ");
+			sb.append("Executing query 'artifactRepository' with bind variables: ");
 			boolean addComma = false;
 			for (Object o : paramsAndValues) {
 				if (o != null) {
@@ -1068,37 +1002,33 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 			}
 			logger.trace(sb.toString());
 		} else if (logger.isDebugEnabled()) {
-			logger.debug("Executing query 'vehicleData' (with bind variables)");
+			logger.debug("Executing query 'artifactRepository' (with bind variables)");
 		}
 
 		Map<String, Object> parameters = graphqlClientUtils.generatesBindVariableValuesMap(paramsAndValues);
-		parameters.put("queryVehicleDataVin", vin);
-		parameters.put("queryVehicleDataLanguageTags", languageTags);
-		parameters.put("queryVehicleDataMarketplaceCode", marketplaceCode);
+		parameters.put("queryArtifactRepositoryId", id);
 		
 		cn.zy.client.Query ret 
 			= graphQLConfiguration.getQueryExecutor().execute(objectResponse, parameters, cn.zy.client.Query.class);
 
-		return ret.getVehicleData();
+		return ret.getArtifactRepository();
 	}
 
 	/**
-	 * Get the {@link com.graphql_java_generator.client.request.Builder} for the FactoryVehicle, as expected by the vehicleData query.
+	 * Get the {@link com.graphql_java_generator.client.request.Builder} for the ArtifactRepository, as expected by the artifactRepository query.
 	 * 
 	 * @return
 	 * @throws GraphQLRequestPreparationException
 	 */
-	public com.graphql_java_generator.client.request.Builder getVehicleDataResponseBuilder() throws GraphQLRequestPreparationException {
-		return new com.graphql_java_generator.client.request.Builder(GraphQLRequest.class, "vehicleData", RequestType.query
-			, InputParameter.newBindParameter("", "vin","queryVehicleDataVin", InputParameterType.MANDATORY, "String", true, 0, false)
-			, InputParameter.newBindParameter("", "languageTags","queryVehicleDataLanguageTags", InputParameterType.MANDATORY, "String", true, 1, true)
-			, InputParameter.newBindParameter("", "marketplaceCode","queryVehicleDataMarketplaceCode", InputParameterType.OPTIONAL, "String", false, 0, false)
+	public com.graphql_java_generator.client.request.Builder getArtifactRepositoryResponseBuilder() throws GraphQLRequestPreparationException {
+		return new com.graphql_java_generator.client.request.Builder(GraphQLRequest.class, "artifactRepository", RequestType.query
+			, InputParameter.newBindParameter("", "id","queryArtifactRepositoryId", InputParameterType.MANDATORY, "ID", true, 0, false)
 			);
 	}
 
 
 	/**
-	 * Get the {@link GraphQLRequest} for the vehicleData executor, created with the given Partial request.
+	 * Get the {@link GraphQLRequest} for the artifactRepository executor, created with the given Partial request.
 	 * 
 	 * @param partialRequest
 	 * 				The Partial GraphQLRequest, as explained in the 
@@ -1106,11 +1036,9 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * @return
 	 * @throws GraphQLRequestPreparationException
 	 */
-	public GraphQLRequest getVehicleDataGraphQLRequest(String partialRequest) throws GraphQLRequestPreparationException {
-		return new GraphQLRequest(partialRequest, RequestType.query, "vehicleData"
-  		, InputParameter.newBindParameter("", "vin","queryVehicleDataVin", InputParameterType.MANDATORY, "String", true, 0, false)
-  		, InputParameter.newBindParameter("", "languageTags","queryVehicleDataLanguageTags", InputParameterType.MANDATORY, "String", true, 1, true)
-  		, InputParameter.newBindParameter("", "marketplaceCode","queryVehicleDataMarketplaceCode", InputParameterType.OPTIONAL, "String", false, 0, false)
+	public GraphQLRequest getArtifactRepositoryGraphQLRequest(String partialRequest) throws GraphQLRequestPreparationException {
+		return new GraphQLRequest(partialRequest, RequestType.query, "artifactRepository"
+  		, InputParameter.newBindParameter("", "id","queryArtifactRepositoryId", InputParameterType.MANDATORY, "ID", true, 0, false)
 		);
 	}
 	
@@ -1124,7 +1052,7 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * Map<String, Object> params = new HashMap<>();
 	 * params.put("skip", Boolean.FALSE);
 	 *
-	 * VehicleState c = myQyeryType.vehicleStateWithBindValues("{id name @skip(if: false) appearsIn friends {id name}}", inventoryId, languageTags, params);
+	 * List<ArtifactRepository> c = myQyeryType.testsWithBindValues("{id name @skip(if: false) appearsIn friends {id name}}", ids, params);
 	 * </PRE>
 	 * 
 	 * It offers a logging of the call (if in debug mode), or of the call and its parameters (if in trace mode).<BR/>
@@ -1137,8 +1065,7 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * 
 	 * @param queryResponseDef
 	 *            The response definition of the query, in the native GraphQL format (see here above)
-	 * @param inventoryId Parameter for the vehicleState field of Query, as defined in the GraphQL schema
-	 * @param languageTags Parameter for the vehicleState field of Query, as defined in the GraphQL schema
+	 * @param ids Parameter for the tests field of Query, as defined in the GraphQL schema
 	 * @param parameters
 	 *            The list of values, for the bind variables defined in the query. If there is no bind variable in the
 	 *            defined Query, this argument may be null or an empty {@link Map}
@@ -1149,16 +1076,15 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 *             When an error occurs during the request execution, typically a network error, an error from the
 	 *             GraphQL server or if the server response can't be parsed
 	 */
- @GraphQLNonScalar (fieldName = "vehicleState", graphQLTypeSimpleName = "VehicleState", javaClass = cn.zy.client.VehicleState.class)
-	public cn.zy.client.VehicleState vehicleStateWithBindValues(
+ @GraphQLNonScalar (fieldName = "tests", graphQLTypeSimpleName = "ArtifactRepository", javaClass = cn.zy.client.ArtifactRepository.class)
+	public List<cn.zy.client.ArtifactRepository> testsWithBindValues(
 			String queryResponseDef,
-			String inventoryId,
-			List<String> languageTags,
+			List<String> ids,
 			Map<String, Object> parameters)
 			throws GraphQLRequestExecutionException, GraphQLRequestPreparationException {
-		logger.debug("Executing query 'vehicleState': {} ", queryResponseDef);
-		ObjectResponse objectResponse = getVehicleStateResponseBuilder().withQueryResponseDef(queryResponseDef).build();
-		return vehicleState(objectResponse, inventoryId, languageTags, parameters);
+		logger.debug("Executing query 'tests': {} ", queryResponseDef);
+		ObjectResponse objectResponse = getTestsResponseBuilder().withQueryResponseDef(queryResponseDef).build();
+		return tests(objectResponse, ids, parameters);
 	}
 
 	/**
@@ -1168,7 +1094,7 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * For instance, if the query hero has one parameter (as defined in the GraphQL schema):
 	 * 
 	 * <PRE>
-	 * VehicleState c = myQyeryType.vehicleState("{id name @skip(if: false) appearsIn friends {id name}}", inventoryId, languageTags, "skip", Boolean.FALSE);
+	 * List<ArtifactRepository> c = myQyeryType.tests("{id name @skip(if: false) appearsIn friends {id name}}", ids, "skip", Boolean.FALSE);
 	 * </PRE>
 	 * 
 	 * It offers a logging of the call (if in debug mode), or of the call and its parameters (if in trace mode).<BR/>
@@ -1181,8 +1107,7 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * 
 	 * @param queryResponseDef
 	 *            The response definition of the query, in the native GraphQL format (see here above)
-	 * @param inventoryId Parameter for the vehicleState field of Query, as defined in the GraphQL schema
-	 * @param languageTags Parameter for the vehicleState field of Query, as defined in the GraphQL schema
+	 * @param ids Parameter for the tests field of Query, as defined in the GraphQL schema
 	 * @param parameters
 	 *            The list of values, for the bind variables defined in the query. If there is no bind variable in the
 	 *            defined Query, this argument may be null or an empty {@link Map}
@@ -1193,16 +1118,15 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 *             When an error occurs during the request execution, typically a network error, an error from the
 	 *             GraphQL server or if the server response can't be parsed
 	 */
- @GraphQLNonScalar (fieldName = "vehicleState", graphQLTypeSimpleName = "VehicleState", javaClass = cn.zy.client.VehicleState.class)
-	public cn.zy.client.VehicleState vehicleState(
+ @GraphQLNonScalar (fieldName = "tests", graphQLTypeSimpleName = "ArtifactRepository", javaClass = cn.zy.client.ArtifactRepository.class)
+	public List<cn.zy.client.ArtifactRepository> tests(
 			String queryResponseDef,
-			String inventoryId,
-			List<String> languageTags,
+			List<String> ids,
 			Object... paramsAndValues)
 			throws GraphQLRequestExecutionException, GraphQLRequestPreparationException {
-		logger.debug("Executing query 'vehicleState': {} ", queryResponseDef);
-		ObjectResponse objectResponse = getVehicleStateResponseBuilder().withQueryResponseDef(queryResponseDef).build();
-		return vehicleStateWithBindValues(objectResponse, inventoryId, languageTags, graphqlClientUtils.generatesBindVariableValuesMap(paramsAndValues));
+		logger.debug("Executing query 'tests': {} ", queryResponseDef);
+		ObjectResponse objectResponse = getTestsResponseBuilder().withQueryResponseDef(queryResponseDef).build();
+		return testsWithBindValues(objectResponse, ids, graphqlClientUtils.generatesBindVariableValuesMap(paramsAndValues));
 	}
 
 	/**
@@ -1225,15 +1149,14 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * Map<String, Object> params = new HashMap<>();
 	 * params.put("sinceParam", sinceValue);
 	 * // This will set the value sinceValue to the sinceParam field parameter
-	 * VehicleState ret = queryType.vehicleStateWithBindValues(response, inventoryId, languageTags, params);
+	 * List<ArtifactRepository> ret = queryType.testsWithBindValues(response, ids, params);
 	 * ...
 	 * }
 	 * </PRE>
 	 * 
 	 * @param objectResponse
 	 *            The definition of the response format, that describes what the GraphQL server is expected to return
-	 * @param inventoryId Parameter for the vehicleState field of Query, as defined in the GraphQL schema
-	 * @param languageTags Parameter for the vehicleState field of Query, as defined in the GraphQL schema
+	 * @param ids Parameter for the tests field of Query, as defined in the GraphQL schema
 	 * @param parameters
 	 *            The list of values, for the bind variables defined in the query. If there is no bind variable in the
 	 *            defined Query, this argument may be null or an empty {@link Map}
@@ -1241,28 +1164,26 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 *             When an error occurs during the request execution, typically a network error, an error from the
 	 *             GraphQL server or if the server response can't be parsed
 	 */
- @GraphQLNonScalar (fieldName = "vehicleState", graphQLTypeSimpleName = "VehicleState", javaClass = cn.zy.client.VehicleState.class)
-	public cn.zy.client.VehicleState vehicleStateWithBindValues(
+ @GraphQLNonScalar (fieldName = "tests", graphQLTypeSimpleName = "ArtifactRepository", javaClass = cn.zy.client.ArtifactRepository.class)
+	public List<cn.zy.client.ArtifactRepository> testsWithBindValues(
 			ObjectResponse objectResponse,
-			String inventoryId,
-			List<String> languageTags,
+			List<String> ids,
 			Map<String, Object> parameters)
 			throws GraphQLRequestExecutionException  {
 		if (logger.isTraceEnabled()) {
-			logger.trace("Executing query 'vehicleState' with parameters: {}, {} ", inventoryId, languageTags);
+			logger.trace("Executing query 'tests' with parameters: {} ", ids);
 		} else if (logger.isDebugEnabled()) {
-			logger.debug("Executing query 'vehicleState'");
+			logger.debug("Executing query 'tests'");
 		}
 	
 		// Given values for the BindVariables
 		parameters = (parameters != null) ? parameters : new HashMap<>();
-		parameters.put("queryVehicleStateInventoryId", inventoryId);
-		parameters.put("queryVehicleStateLanguageTags", languageTags);
+		parameters.put("queryTestsIds", ids);
 
 		cn.zy.client.Query ret 
 			= graphQLConfiguration.getQueryExecutor().execute(objectResponse, parameters, cn.zy.client.Query.class);
 		
-		return ret.getVehicleState();
+		return ret.getTests();
 	}
 
 	/**
@@ -1283,15 +1204,14 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * public void doTheJob() {
 	 * ..
 	 * // This will set the value sinceValue to the sinceParam field parameter
-	 * VehicleState ret = queryType.vehicleState(response, inventoryId, languageTags, "sinceParam", sinceValue);
+	 * List<ArtifactRepository> ret = queryType.tests(response, ids, "sinceParam", sinceValue);
 	 * ...
 	 * }
 	 * </PRE>
 	 * 
 	 * @param objectResponse
 	 *            The definition of the response format, that describes what the GraphQL server is expected to return
-	 * @param inventoryId Parameter for the vehicleState field of Query, as defined in the GraphQL schema
-	 * @param languageTags Parameter for the vehicleState field of Query, as defined in the GraphQL schema
+	 * @param ids Parameter for the tests field of Query, as defined in the GraphQL schema
 	 * @param paramsAndValues
 	 *            This parameter contains all the name and values for the Bind Variables defined in the objectResponse
 	 *            parameter, that must be sent to the server. Optional parameter may not have a value. They will be
@@ -1302,16 +1222,15 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 *             When an error occurs during the request execution, typically a network error, an error from the
 	 *             GraphQL server or if the server response can't be parsed
 	 */
- @GraphQLNonScalar (fieldName = "vehicleState", graphQLTypeSimpleName = "VehicleState", javaClass = cn.zy.client.VehicleState.class)
-	public cn.zy.client.VehicleState vehicleState(
+ @GraphQLNonScalar (fieldName = "tests", graphQLTypeSimpleName = "ArtifactRepository", javaClass = cn.zy.client.ArtifactRepository.class)
+	public List<cn.zy.client.ArtifactRepository> tests(
 			ObjectResponse objectResponse,
-			String inventoryId,
-			List<String> languageTags,
+			List<String> ids,
 			Object... paramsAndValues)
 			throws GraphQLRequestExecutionException  {
 		if (logger.isTraceEnabled()) {
 			StringBuffer sb = new StringBuffer();
-			sb.append("Executing query 'vehicleState' with bind variables: ");
+			sb.append("Executing query 'tests' with bind variables: ");
 			boolean addComma = false;
 			for (Object o : paramsAndValues) {
 				if (o != null) {
@@ -1323,35 +1242,33 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 			}
 			logger.trace(sb.toString());
 		} else if (logger.isDebugEnabled()) {
-			logger.debug("Executing query 'vehicleState' (with bind variables)");
+			logger.debug("Executing query 'tests' (with bind variables)");
 		}
 
 		Map<String, Object> parameters = graphqlClientUtils.generatesBindVariableValuesMap(paramsAndValues);
-		parameters.put("queryVehicleStateInventoryId", inventoryId);
-		parameters.put("queryVehicleStateLanguageTags", languageTags);
+		parameters.put("queryTestsIds", ids);
 		
 		cn.zy.client.Query ret 
 			= graphQLConfiguration.getQueryExecutor().execute(objectResponse, parameters, cn.zy.client.Query.class);
 
-		return ret.getVehicleState();
+		return ret.getTests();
 	}
 
 	/**
-	 * Get the {@link com.graphql_java_generator.client.request.Builder} for the VehicleState, as expected by the vehicleState query.
+	 * Get the {@link com.graphql_java_generator.client.request.Builder} for the ArtifactRepository, as expected by the tests query.
 	 * 
 	 * @return
 	 * @throws GraphQLRequestPreparationException
 	 */
-	public com.graphql_java_generator.client.request.Builder getVehicleStateResponseBuilder() throws GraphQLRequestPreparationException {
-		return new com.graphql_java_generator.client.request.Builder(GraphQLRequest.class, "vehicleState", RequestType.query
-			, InputParameter.newBindParameter("", "inventoryId","queryVehicleStateInventoryId", InputParameterType.MANDATORY, "String", true, 0, false)
-			, InputParameter.newBindParameter("", "languageTags","queryVehicleStateLanguageTags", InputParameterType.MANDATORY, "String", true, 1, true)
+	public com.graphql_java_generator.client.request.Builder getTestsResponseBuilder() throws GraphQLRequestPreparationException {
+		return new com.graphql_java_generator.client.request.Builder(GraphQLRequest.class, "tests", RequestType.query
+			, InputParameter.newBindParameter("", "ids","queryTestsIds", InputParameterType.MANDATORY, "ID", true, 1, false)
 			);
 	}
 
 
 	/**
-	 * Get the {@link GraphQLRequest} for the vehicleState executor, created with the given Partial request.
+	 * Get the {@link GraphQLRequest} for the tests executor, created with the given Partial request.
 	 * 
 	 * @param partialRequest
 	 * 				The Partial GraphQLRequest, as explained in the 
@@ -1359,502 +1276,9 @@ public class QueryExecutor implements GraphQLQueryExecutor {
 	 * @return
 	 * @throws GraphQLRequestPreparationException
 	 */
-	public GraphQLRequest getVehicleStateGraphQLRequest(String partialRequest) throws GraphQLRequestPreparationException {
-		return new GraphQLRequest(partialRequest, RequestType.query, "vehicleState"
-  		, InputParameter.newBindParameter("", "inventoryId","queryVehicleStateInventoryId", InputParameterType.MANDATORY, "String", true, 0, false)
-  		, InputParameter.newBindParameter("", "languageTags","queryVehicleStateLanguageTags", InputParameterType.MANDATORY, "String", true, 1, true)
-		);
-	}
-	
-	/**
-	 * This method executes a partial query against the GraphQL server. That is, the query that is one of the queries
-	 * defined in the GraphQL query object. The queryResponseDef contains the part of the query that <B><U>is
-	 * after</U></B> the query name.<BR/>
-	 * For instance, if the query hero has one parameter (as defined in the GraphQL schema):
-	 * 
-	 * <PRE>
-	 * Map<String, Object> params = new HashMap<>();
-	 * params.put("skip", Boolean.FALSE);
-	 *
-	 * List<VehicleStateSearchResult> c = myQyeryType.vehicleStatesWithBindValues("{id name @skip(if: false) appearsIn friends {id name}}", filter, limit, params);
-	 * </PRE>
-	 * 
-	 * It offers a logging of the call (if in debug mode), or of the call and its parameters (if in trace mode).<BR/>
-	 * This method takes care of writing the query name, and the parameter(s) for the query. The given queryResponseDef
-	 * describes the format of the response of the server response, that is the expected fields of the {@link Character}
-	 * GraphQL type. It can be something like "{ id name }", if you want these fields of this type. Please take a look
-	 * at the StarWars, Forum and other samples for more complex queries.<BR/>
-	 * This method is valid for queries/mutations/subscriptions which don't have bind variables, as there is no
-	 * <I>parameters</I> argument to pass the list of values.
-	 * 
-	 * @param queryResponseDef
-	 *            The response definition of the query, in the native GraphQL format (see here above)
-	 * @param filter Parameter for the vehicleStates field of Query, as defined in the GraphQL schema
-	 * @param limit Parameter for the vehicleStates field of Query, as defined in the GraphQL schema
-	 * @param parameters
-	 *            The list of values, for the bind variables defined in the query. If there is no bind variable in the
-	 *            defined Query, this argument may be null or an empty {@link Map}
-	 * @throws GraphQLRequestPreparationException
-	 *             When an error occurs during the request preparation, typically when building the
-	 *             {@link ObjectResponse}
-	 * @throws GraphQLRequestExecutionException
-	 *             When an error occurs during the request execution, typically a network error, an error from the
-	 *             GraphQL server or if the server response can't be parsed
-	 */
- @GraphQLNonScalar (fieldName = "vehicleStates", graphQLTypeSimpleName = "VehicleStateSearchResult", javaClass = cn.zy.client.VehicleStateSearchResult.class)
-	public List<cn.zy.client.VehicleStateSearchResult> vehicleStatesWithBindValues(
-			String queryResponseDef,
-			cn.zy.client.VehicleStateFilterInput filter,
-			Integer limit,
-			Map<String, Object> parameters)
-			throws GraphQLRequestExecutionException, GraphQLRequestPreparationException {
-		logger.debug("Executing query 'vehicleStates': {} ", queryResponseDef);
-		ObjectResponse objectResponse = getVehicleStatesResponseBuilder().withQueryResponseDef(queryResponseDef).build();
-		return vehicleStates(objectResponse, filter, limit, parameters);
-	}
-
-	/**
-	 * This method executes a partial query against the GraphQL server. That is, the query that is one of the queries
-	 * defined in the GraphQL query object. The queryResponseDef contains the part of the query that <B><U>is
-	 * after</U></B> the query name.<BR/>
-	 * For instance, if the query hero has one parameter (as defined in the GraphQL schema):
-	 * 
-	 * <PRE>
-	 * List<VehicleStateSearchResult> c = myQyeryType.vehicleStates("{id name @skip(if: false) appearsIn friends {id name}}", filter, limit, "skip", Boolean.FALSE);
-	 * </PRE>
-	 * 
-	 * It offers a logging of the call (if in debug mode), or of the call and its parameters (if in trace mode).<BR/>
-	 * This method takes care of writing the query name, and the parameter(s) for the query. The given queryResponseDef
-	 * describes the format of the response of the server response, that is the expected fields of the {@link Character}
-	 * GraphQL type. It can be something like "{ id name }", if you want these fields of this type. Please take a look
-	 * at the StarWars, Forum and other samples for more complex queries.<BR/>
-	 * This method is valid for queries/mutations/subscriptions which don't have bind variables, as there is no
-	 * <I>parameters</I> argument to pass the list of values.
-	 * 
-	 * @param queryResponseDef
-	 *            The response definition of the query, in the native GraphQL format (see here above)
-	 * @param filter Parameter for the vehicleStates field of Query, as defined in the GraphQL schema
-	 * @param limit Parameter for the vehicleStates field of Query, as defined in the GraphQL schema
-	 * @param parameters
-	 *            The list of values, for the bind variables defined in the query. If there is no bind variable in the
-	 *            defined Query, this argument may be null or an empty {@link Map}
-	 * @throws GraphQLRequestPreparationException
-	 *             When an error occurs during the request preparation, typically when building the
-	 *             {@link ObjectResponse}
-	 * @throws GraphQLRequestExecutionException
-	 *             When an error occurs during the request execution, typically a network error, an error from the
-	 *             GraphQL server or if the server response can't be parsed
-	 */
- @GraphQLNonScalar (fieldName = "vehicleStates", graphQLTypeSimpleName = "VehicleStateSearchResult", javaClass = cn.zy.client.VehicleStateSearchResult.class)
-	public List<cn.zy.client.VehicleStateSearchResult> vehicleStates(
-			String queryResponseDef,
-			cn.zy.client.VehicleStateFilterInput filter,
-			Integer limit,
-			Object... paramsAndValues)
-			throws GraphQLRequestExecutionException, GraphQLRequestPreparationException {
-		logger.debug("Executing query 'vehicleStates': {} ", queryResponseDef);
-		ObjectResponse objectResponse = getVehicleStatesResponseBuilder().withQueryResponseDef(queryResponseDef).build();
-		return vehicleStatesWithBindValues(objectResponse, filter, limit, graphqlClientUtils.generatesBindVariableValuesMap(paramsAndValues));
-	}
-
-	/**
-	 * This method is expected by the graphql-java framework. It will be called when this query is called. It offers a
-	 * logging of the call (if in debug mode), or of the call and its parameters (if in trace mode).<BR/>
-	 * This method is valid for queries/mutations/subscriptions which don't have bind variables, as there is no
-	 * <I>parameters</I> argument to pass the list of values.<BR/>
-	 * Here is a sample:
-	 * 
-	 * <PRE>
-	 * ObjectResponse response;
-	 * public void setup() {
-	 * 	// Preparation of the query
-	 * 	response = queryType.getBoardsResponseBuilder()
-	 * 			.withQueryResponseDef("{id name publiclyAvailable topics(since:?sinceParam){id}}").build();
-	 * }
-	 * 
-	 * public void doTheJob() {
-	 * ..
-	 * Map<String, Object> params = new HashMap<>();
-	 * params.put("sinceParam", sinceValue);
-	 * // This will set the value sinceValue to the sinceParam field parameter
-	 * List<VehicleStateSearchResult> ret = queryType.vehicleStatesWithBindValues(response, filter, limit, params);
-	 * ...
-	 * }
-	 * </PRE>
-	 * 
-	 * @param objectResponse
-	 *            The definition of the response format, that describes what the GraphQL server is expected to return
-	 * @param filter Parameter for the vehicleStates field of Query, as defined in the GraphQL schema
-	 * @param limit Parameter for the vehicleStates field of Query, as defined in the GraphQL schema
-	 * @param parameters
-	 *            The list of values, for the bind variables defined in the query. If there is no bind variable in the
-	 *            defined Query, this argument may be null or an empty {@link Map}
-	 * @throws GraphQLRequestExecutionException
-	 *             When an error occurs during the request execution, typically a network error, an error from the
-	 *             GraphQL server or if the server response can't be parsed
-	 */
- @GraphQLNonScalar (fieldName = "vehicleStates", graphQLTypeSimpleName = "VehicleStateSearchResult", javaClass = cn.zy.client.VehicleStateSearchResult.class)
-	public List<cn.zy.client.VehicleStateSearchResult> vehicleStatesWithBindValues(
-			ObjectResponse objectResponse,
-			cn.zy.client.VehicleStateFilterInput filter,
-			Integer limit,
-			Map<String, Object> parameters)
-			throws GraphQLRequestExecutionException  {
-		if (logger.isTraceEnabled()) {
-			logger.trace("Executing query 'vehicleStates' with parameters: {}, {} ", filter, limit);
-		} else if (logger.isDebugEnabled()) {
-			logger.debug("Executing query 'vehicleStates'");
-		}
-	
-		// Given values for the BindVariables
-		parameters = (parameters != null) ? parameters : new HashMap<>();
-		parameters.put("queryVehicleStatesFilter", filter);
-		parameters.put("queryVehicleStatesLimit", limit);
-
-		cn.zy.client.Query ret 
-			= graphQLConfiguration.getQueryExecutor().execute(objectResponse, parameters, cn.zy.client.Query.class);
-		
-		return ret.getVehicleStates();
-	}
-
-	/**
-	 * This method is expected by the graphql-java framework. It will be called when this query is called. It offers a
-	 * logging of the call (if in debug mode), or of the call and its parameters (if in trace mode).<BR/>
-	 * This method is valid for queries/mutations/subscriptions which don't have bind variables, as there is no
-	 * <I>parameters</I> argument to pass the list of values.<BR/>
-	 * Here is a sample:
-	 * 
-	 * <PRE>
-	 * ObjectResponse response;
-	 * public void setup() {
-	 * 	// Preparation of the query
-	 * 	response = queryType.getBoardsResponseBuilder()
-	 * 			.withQueryResponseDef("{id name publiclyAvailable topics(since:?sinceParam){id}}").build();
-	 * }
-	 * 
-	 * public void doTheJob() {
-	 * ..
-	 * // This will set the value sinceValue to the sinceParam field parameter
-	 * List<VehicleStateSearchResult> ret = queryType.vehicleStates(response, filter, limit, "sinceParam", sinceValue);
-	 * ...
-	 * }
-	 * </PRE>
-	 * 
-	 * @param objectResponse
-	 *            The definition of the response format, that describes what the GraphQL server is expected to return
-	 * @param filter Parameter for the vehicleStates field of Query, as defined in the GraphQL schema
-	 * @param limit Parameter for the vehicleStates field of Query, as defined in the GraphQL schema
-	 * @param paramsAndValues
-	 *            This parameter contains all the name and values for the Bind Variables defined in the objectResponse
-	 *            parameter, that must be sent to the server. Optional parameter may not have a value. They will be
-	 *            ignored and not sent to the server. Mandatory parameter must be provided in this argument.<BR/>
-	 *            This parameter contains an even number of parameters: it must be a series of name and values :
-	 *            (paramName1, paramValue1, paramName2, paramValue2...)
-	 * @throws GraphQLRequestExecutionException
-	 *             When an error occurs during the request execution, typically a network error, an error from the
-	 *             GraphQL server or if the server response can't be parsed
-	 */
- @GraphQLNonScalar (fieldName = "vehicleStates", graphQLTypeSimpleName = "VehicleStateSearchResult", javaClass = cn.zy.client.VehicleStateSearchResult.class)
-	public List<cn.zy.client.VehicleStateSearchResult> vehicleStates(
-			ObjectResponse objectResponse,
-			cn.zy.client.VehicleStateFilterInput filter,
-			Integer limit,
-			Object... paramsAndValues)
-			throws GraphQLRequestExecutionException  {
-		if (logger.isTraceEnabled()) {
-			StringBuffer sb = new StringBuffer();
-			sb.append("Executing query 'vehicleStates' with bind variables: ");
-			boolean addComma = false;
-			for (Object o : paramsAndValues) {
-				if (o != null) {
-					sb.append(o.toString());
-					if (addComma)
-						sb.append(", ");
-					addComma = true;
-				}
-			}
-			logger.trace(sb.toString());
-		} else if (logger.isDebugEnabled()) {
-			logger.debug("Executing query 'vehicleStates' (with bind variables)");
-		}
-
-		Map<String, Object> parameters = graphqlClientUtils.generatesBindVariableValuesMap(paramsAndValues);
-		parameters.put("queryVehicleStatesFilter", filter);
-		parameters.put("queryVehicleStatesLimit", limit);
-		
-		cn.zy.client.Query ret 
-			= graphQLConfiguration.getQueryExecutor().execute(objectResponse, parameters, cn.zy.client.Query.class);
-
-		return ret.getVehicleStates();
-	}
-
-	/**
-	 * Get the {@link com.graphql_java_generator.client.request.Builder} for the VehicleStateSearchResult, as expected by the vehicleStates query.
-	 * 
-	 * @return
-	 * @throws GraphQLRequestPreparationException
-	 */
-	public com.graphql_java_generator.client.request.Builder getVehicleStatesResponseBuilder() throws GraphQLRequestPreparationException {
-		return new com.graphql_java_generator.client.request.Builder(GraphQLRequest.class, "vehicleStates", RequestType.query
-			, InputParameter.newBindParameter("", "filter","queryVehicleStatesFilter", InputParameterType.MANDATORY, "VehicleStateFilterInput", true, 0, false)
-			, InputParameter.newBindParameter("", "limit","queryVehicleStatesLimit", InputParameterType.MANDATORY, "Int", true, 0, false)
-			);
-	}
-
-
-	/**
-	 * Get the {@link GraphQLRequest} for the vehicleStates executor, created with the given Partial request.
-	 * 
-	 * @param partialRequest
-	 * 				The Partial GraphQLRequest, as explained in the 
-	 * 				<A HREF="https://graphql-maven-plugin-project.graphql-java-generator.com/client.html">plugin client documentation</A> 
-	 * @return
-	 * @throws GraphQLRequestPreparationException
-	 */
-	public GraphQLRequest getVehicleStatesGraphQLRequest(String partialRequest) throws GraphQLRequestPreparationException {
-		return new GraphQLRequest(partialRequest, RequestType.query, "vehicleStates"
-  		, InputParameter.newBindParameter("", "filter","queryVehicleStatesFilter", InputParameterType.MANDATORY, "VehicleStateFilterInput", true, 0, false)
-  		, InputParameter.newBindParameter("", "limit","queryVehicleStatesLimit", InputParameterType.MANDATORY, "Int", true, 0, false)
-		);
-	}
-	
-	/**
-	 * This method executes a partial query against the GraphQL server. That is, the query that is one of the queries
-	 * defined in the GraphQL query object. The queryResponseDef contains the part of the query that <B><U>is
-	 * after</U></B> the query name.<BR/>
-	 * For instance, if the query hero has one parameter (as defined in the GraphQL schema):
-	 * 
-	 * <PRE>
-	 * Map<String, Object> params = new HashMap<>();
-	 * params.put("skip", Boolean.FALSE);
-	 *
-	 * String c = myQyeryType.vinWithBindValues("{id name @skip(if: false) appearsIn friends {id name}}", inventoryId, params);
-	 * </PRE>
-	 * 
-	 * It offers a logging of the call (if in debug mode), or of the call and its parameters (if in trace mode).<BR/>
-	 * This method takes care of writing the query name, and the parameter(s) for the query. The given queryResponseDef
-	 * describes the format of the response of the server response, that is the expected fields of the {@link Character}
-	 * GraphQL type. It can be something like "{ id name }", if you want these fields of this type. Please take a look
-	 * at the StarWars, Forum and other samples for more complex queries.<BR/>
-	 * This method is valid for queries/mutations/subscriptions which don't have bind variables, as there is no
-	 * <I>parameters</I> argument to pass the list of values.
-	 * 
-	 * @param queryResponseDef
-	 *            The response definition of the query, in the native GraphQL format (see here above)
-	 * @param inventoryId Parameter for the vin field of Query, as defined in the GraphQL schema
-	 * @param parameters
-	 *            The list of values, for the bind variables defined in the query. If there is no bind variable in the
-	 *            defined Query, this argument may be null or an empty {@link Map}
-	 * @throws GraphQLRequestPreparationException
-	 *             When an error occurs during the request preparation, typically when building the
-	 *             {@link ObjectResponse}
-	 * @throws GraphQLRequestExecutionException
-	 *             When an error occurs during the request execution, typically a network error, an error from the
-	 *             GraphQL server or if the server response can't be parsed
-	 */
- @GraphQLScalar (fieldName = "vin", graphQLTypeSimpleName = "String", javaClass = String.class)
-	public String vinWithBindValues(
-			String queryResponseDef,
-			String inventoryId,
-			Map<String, Object> parameters)
-			throws GraphQLRequestExecutionException, GraphQLRequestPreparationException {
-		logger.debug("Executing query 'vin': {} ", queryResponseDef);
-		ObjectResponse objectResponse = getVinResponseBuilder().withQueryResponseDef(queryResponseDef).build();
-		return vin(objectResponse, inventoryId, parameters);
-	}
-
-	/**
-	 * This method executes a partial query against the GraphQL server. That is, the query that is one of the queries
-	 * defined in the GraphQL query object. The queryResponseDef contains the part of the query that <B><U>is
-	 * after</U></B> the query name.<BR/>
-	 * For instance, if the query hero has one parameter (as defined in the GraphQL schema):
-	 * 
-	 * <PRE>
-	 * String c = myQyeryType.vin("{id name @skip(if: false) appearsIn friends {id name}}", inventoryId, "skip", Boolean.FALSE);
-	 * </PRE>
-	 * 
-	 * It offers a logging of the call (if in debug mode), or of the call and its parameters (if in trace mode).<BR/>
-	 * This method takes care of writing the query name, and the parameter(s) for the query. The given queryResponseDef
-	 * describes the format of the response of the server response, that is the expected fields of the {@link Character}
-	 * GraphQL type. It can be something like "{ id name }", if you want these fields of this type. Please take a look
-	 * at the StarWars, Forum and other samples for more complex queries.<BR/>
-	 * This method is valid for queries/mutations/subscriptions which don't have bind variables, as there is no
-	 * <I>parameters</I> argument to pass the list of values.
-	 * 
-	 * @param queryResponseDef
-	 *            The response definition of the query, in the native GraphQL format (see here above)
-	 * @param inventoryId Parameter for the vin field of Query, as defined in the GraphQL schema
-	 * @param parameters
-	 *            The list of values, for the bind variables defined in the query. If there is no bind variable in the
-	 *            defined Query, this argument may be null or an empty {@link Map}
-	 * @throws GraphQLRequestPreparationException
-	 *             When an error occurs during the request preparation, typically when building the
-	 *             {@link ObjectResponse}
-	 * @throws GraphQLRequestExecutionException
-	 *             When an error occurs during the request execution, typically a network error, an error from the
-	 *             GraphQL server or if the server response can't be parsed
-	 */
- @GraphQLScalar (fieldName = "vin", graphQLTypeSimpleName = "String", javaClass = String.class)
-	public String vin(
-			String queryResponseDef,
-			String inventoryId,
-			Object... paramsAndValues)
-			throws GraphQLRequestExecutionException, GraphQLRequestPreparationException {
-		logger.debug("Executing query 'vin': {} ", queryResponseDef);
-		ObjectResponse objectResponse = getVinResponseBuilder().withQueryResponseDef(queryResponseDef).build();
-		return vinWithBindValues(objectResponse, inventoryId, graphqlClientUtils.generatesBindVariableValuesMap(paramsAndValues));
-	}
-
-	/**
-	 * This method is expected by the graphql-java framework. It will be called when this query is called. It offers a
-	 * logging of the call (if in debug mode), or of the call and its parameters (if in trace mode).<BR/>
-	 * This method is valid for queries/mutations/subscriptions which don't have bind variables, as there is no
-	 * <I>parameters</I> argument to pass the list of values.<BR/>
-	 * Here is a sample:
-	 * 
-	 * <PRE>
-	 * ObjectResponse response;
-	 * public void setup() {
-	 * 	// Preparation of the query
-	 * 	response = queryType.getBoardsResponseBuilder()
-	 * 			.withQueryResponseDef("{id name publiclyAvailable topics(since:?sinceParam){id}}").build();
-	 * }
-	 * 
-	 * public void doTheJob() {
-	 * ..
-	 * Map<String, Object> params = new HashMap<>();
-	 * params.put("sinceParam", sinceValue);
-	 * // This will set the value sinceValue to the sinceParam field parameter
-	 * String ret = queryType.vinWithBindValues(response, inventoryId, params);
-	 * ...
-	 * }
-	 * </PRE>
-	 * 
-	 * @param objectResponse
-	 *            The definition of the response format, that describes what the GraphQL server is expected to return
-	 * @param inventoryId Parameter for the vin field of Query, as defined in the GraphQL schema
-	 * @param parameters
-	 *            The list of values, for the bind variables defined in the query. If there is no bind variable in the
-	 *            defined Query, this argument may be null or an empty {@link Map}
-	 * @throws GraphQLRequestExecutionException
-	 *             When an error occurs during the request execution, typically a network error, an error from the
-	 *             GraphQL server or if the server response can't be parsed
-	 */
- @GraphQLScalar (fieldName = "vin", graphQLTypeSimpleName = "String", javaClass = String.class)
-	public String vinWithBindValues(
-			ObjectResponse objectResponse,
-			String inventoryId,
-			Map<String, Object> parameters)
-			throws GraphQLRequestExecutionException  {
-		if (logger.isTraceEnabled()) {
-			logger.trace("Executing query 'vin' with parameters: {} ", inventoryId);
-		} else if (logger.isDebugEnabled()) {
-			logger.debug("Executing query 'vin'");
-		}
-	
-		// Given values for the BindVariables
-		parameters = (parameters != null) ? parameters : new HashMap<>();
-		parameters.put("queryVinInventoryId", inventoryId);
-
-		cn.zy.client.Query ret 
-			= graphQLConfiguration.getQueryExecutor().execute(objectResponse, parameters, cn.zy.client.Query.class);
-		
-		return ret.getVin();
-	}
-
-	/**
-	 * This method is expected by the graphql-java framework. It will be called when this query is called. It offers a
-	 * logging of the call (if in debug mode), or of the call and its parameters (if in trace mode).<BR/>
-	 * This method is valid for queries/mutations/subscriptions which don't have bind variables, as there is no
-	 * <I>parameters</I> argument to pass the list of values.<BR/>
-	 * Here is a sample:
-	 * 
-	 * <PRE>
-	 * ObjectResponse response;
-	 * public void setup() {
-	 * 	// Preparation of the query
-	 * 	response = queryType.getBoardsResponseBuilder()
-	 * 			.withQueryResponseDef("{id name publiclyAvailable topics(since:?sinceParam){id}}").build();
-	 * }
-	 * 
-	 * public void doTheJob() {
-	 * ..
-	 * // This will set the value sinceValue to the sinceParam field parameter
-	 * String ret = queryType.vin(response, inventoryId, "sinceParam", sinceValue);
-	 * ...
-	 * }
-	 * </PRE>
-	 * 
-	 * @param objectResponse
-	 *            The definition of the response format, that describes what the GraphQL server is expected to return
-	 * @param inventoryId Parameter for the vin field of Query, as defined in the GraphQL schema
-	 * @param paramsAndValues
-	 *            This parameter contains all the name and values for the Bind Variables defined in the objectResponse
-	 *            parameter, that must be sent to the server. Optional parameter may not have a value. They will be
-	 *            ignored and not sent to the server. Mandatory parameter must be provided in this argument.<BR/>
-	 *            This parameter contains an even number of parameters: it must be a series of name and values :
-	 *            (paramName1, paramValue1, paramName2, paramValue2...)
-	 * @throws GraphQLRequestExecutionException
-	 *             When an error occurs during the request execution, typically a network error, an error from the
-	 *             GraphQL server or if the server response can't be parsed
-	 */
- @GraphQLScalar (fieldName = "vin", graphQLTypeSimpleName = "String", javaClass = String.class)
-	public String vin(
-			ObjectResponse objectResponse,
-			String inventoryId,
-			Object... paramsAndValues)
-			throws GraphQLRequestExecutionException  {
-		if (logger.isTraceEnabled()) {
-			StringBuffer sb = new StringBuffer();
-			sb.append("Executing query 'vin' with bind variables: ");
-			boolean addComma = false;
-			for (Object o : paramsAndValues) {
-				if (o != null) {
-					sb.append(o.toString());
-					if (addComma)
-						sb.append(", ");
-					addComma = true;
-				}
-			}
-			logger.trace(sb.toString());
-		} else if (logger.isDebugEnabled()) {
-			logger.debug("Executing query 'vin' (with bind variables)");
-		}
-
-		Map<String, Object> parameters = graphqlClientUtils.generatesBindVariableValuesMap(paramsAndValues);
-		parameters.put("queryVinInventoryId", inventoryId);
-		
-		cn.zy.client.Query ret 
-			= graphQLConfiguration.getQueryExecutor().execute(objectResponse, parameters, cn.zy.client.Query.class);
-
-		return ret.getVin();
-	}
-
-	/**
-	 * Get the {@link com.graphql_java_generator.client.request.Builder} for the String, as expected by the vin query.
-	 * 
-	 * @return
-	 * @throws GraphQLRequestPreparationException
-	 */
-	public com.graphql_java_generator.client.request.Builder getVinResponseBuilder() throws GraphQLRequestPreparationException {
-		return new com.graphql_java_generator.client.request.Builder(GraphQLRequest.class, "vin", RequestType.query
-			, InputParameter.newBindParameter("", "inventoryId","queryVinInventoryId", InputParameterType.MANDATORY, "String", true, 0, false)
-			);
-	}
-
-
-	/**
-	 * Get the {@link GraphQLRequest} for the vin executor, created with the given Partial request.
-	 * 
-	 * @param partialRequest
-	 * 				The Partial GraphQLRequest, as explained in the 
-	 * 				<A HREF="https://graphql-maven-plugin-project.graphql-java-generator.com/client.html">plugin client documentation</A> 
-	 * @return
-	 * @throws GraphQLRequestPreparationException
-	 */
-	public GraphQLRequest getVinGraphQLRequest(String partialRequest) throws GraphQLRequestPreparationException {
-		return new GraphQLRequest(partialRequest, RequestType.query, "vin"
-  		, InputParameter.newBindParameter("", "inventoryId","queryVinInventoryId", InputParameterType.MANDATORY, "String", true, 0, false)
+	public GraphQLRequest getTestsGraphQLRequest(String partialRequest) throws GraphQLRequestPreparationException {
+		return new GraphQLRequest(partialRequest, RequestType.query, "tests"
+  		, InputParameter.newBindParameter("", "ids","queryTestsIds", InputParameterType.MANDATORY, "ID", true, 1, false)
 		);
 	}
 	
